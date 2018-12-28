@@ -1,0 +1,38 @@
+<!-- <router-outlet></router-outlet> -->
+<div class="container-fluid h-100 border border-success">
+    <div class="row h-100">
+        <div class="col-sm-2 col-1" [ngbCollapse]="showLeft" style="max-width:60px">
+            <div class="row h-100">
+                <div class="col">
+                    <button class="btn align-self-center" (click)="showLeft = !showLeft">|||</button>
+                </div>
+            </div>
+        </div>
+        <div [ngbCollapse]="!showLeft"  class="col-md-5 col-lg-7 p-0">
+            <app-sidebar></app-sidebar>
+        </div>
+        <div [ngbCollapse]="showLeft"  class="col-md-5 col-lg-7 p-0">
+            <div class="row h-100 justify-content-between" style="background-color: rgb(168, 215, 233)">
+                <div class="col-2">
+                    <h3 class="p-5 bg-secondary rounded-circle">90</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col p-0">
+            <app-home></app-home>
+        </div>
+        <div class="col-sm-2 col-1" [ngbCollapse]="showRight" style="max-width:60px">
+            <div class="row align-items-center h-100">
+                <div class="col">
+                    <button class="btn" (click)="showRight = !showRight">|||</button>
+                </div>
+                <div class="col">
+                    <button class="btn" (click)="showRight = !showRight">|||</button>
+                </div>
+                <div class="col">
+                    <button class="btn" (click)="showRight = !showRight">|||</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
