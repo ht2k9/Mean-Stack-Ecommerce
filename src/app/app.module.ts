@@ -1,7 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatCheckboxModule, MatSliderModule } from '@angular/material';
+import {MatIconModule} from '@angular/material/icon';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +13,8 @@ import { ShoppingCartComponent } from './components/user/shopping-cart/shopping-
 import { FormsModule } from '@angular/forms';
 import { SharedService } from './components/shared/shared.service';
 import { ProductDetailComponent } from './components/products/product-detail/product-detail.component';
+import { ProductListComponent } from './components/products/product-list/product-list.component';
+import { ProductSearchComponent } from './components/products/product-search/product-search.component';
 
 @NgModule({
   declarations: [
@@ -18,13 +22,17 @@ import { ProductDetailComponent } from './components/products/product-detail/pro
     SidebarComponent,
     HomeComponent,
     ShoppingCartComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    ProductListComponent,
+    ProductSearchComponent
   ],
   imports: [
     BrowserModule,
+    NoopAnimationsModule,
     AppRoutingModule,
     FormsModule,
-    NgbModule
+    NgbModule,
+    MatCheckboxModule,MatSliderModule,MatIconModule
   ],
   providers: [SharedService],
   bootstrap: [AppComponent]
