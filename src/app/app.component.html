@@ -1,36 +1,39 @@
-<div class="container-fluid h-100">
+<app-navbar></app-navbar>
+<div class="container-fluid h-100" style="padding-top: 55px">
     <div class="row h-100">
-        <div [ngbCollapse]="!sharedSrv.sidebarOpen" class="col p-0">
+        <div [ngbCollapse]="!sharedSrv.sidebarOpen" class="col-3 p-0">
             <app-sidebar></app-sidebar>
         </div>
         <div class="col-sm-2 col-1 bg-transparent" style="max-width:50px">
             <div class="row align-items-center h-100">
                 <div class="col">
-                    <mat-icon (click)="onOpenSidebar()">home_outlined</mat-icon>
+                   <mat-icon svgIcon="menu-open" (click)="sharedSrv.sidebarOpen = !sharedSrv.sidebarOpen"></mat-icon>
                 </div>
                 <div class="col align-self-start">
-                    <mat-icon (click)="onOpenSidebar()">search</mat-icon>
+                   <mat-icon svgIcon="magnify"></mat-icon>
                 </div>
                 <div class="col align-self-buttom">
-                    <mat-icon (click)="onOpenSidebar()">favorite_border</mat-icon>
+                    <mat-icon svgIcon="facebook" class="my-1"></mat-icon>
+                    <mat-icon svgIcon="whatsapp" class="my-1"></mat-icon>
+                    <mat-icon svgIcon="phone" class="my-1"></mat-icon>
                 </div>
             </div>
         </div>
 
-        <div class="col">
+        <div class="col"> 
             <router-outlet></router-outlet>
         </div>
 
         <div class="col-sm-2 col-1 bg-light" style="max-width:50px">
             <div class="row align-items-center h-100">
                 <div class="col">
-                    <mat-icon routerLink="/user/shoppingcart">shopping_cart</mat-icon>
+                   <mat-icon svgIcon="shopping" routerLink="/product/list"></mat-icon>
                 </div>
                 <div class="col">
-                    <mat-icon routerLink="/user/orders">shopping_basket</mat-icon>
+                    <mat-icon svgIcon="cart-outline"></mat-icon>
                 </div>
                 <div class="col">
-                    <mat-icon routerLink="/user/profile">perm_identity</mat-icon>
+                    <mat-icon svgIcon="account-outline"></mat-icon>
                 </div>
             </div>
         </div>

@@ -1,20 +1,27 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatCheckboxModule, MatSliderModule } from '@angular/material';
-import {MatIconModule} from '@angular/material/icon';
+import { MatIconRegistry, MatIconModule } from '@angular/material';
+import { DomSanitizer } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './components/shared/sidebar/sidebar.component';
 import { HomeComponent } from './components/shared/home/home.component';
 import { ShoppingCartComponent } from './components/user/shopping-cart/shopping-cart.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedService } from './components/shared/shared.service';
 import { ProductDetailComponent } from './components/products/product-detail/product-detail.component';
 import { ProductListComponent } from './components/products/product-list/product-list.component';
 import { ProductSearchComponent } from './components/products/product-search/product-search.component';
+import { DatabaseService } from './components/shared/database.service';
+import { SignInComponent } from './user/sign-in/sign-in.component';
+import { SignUpComponent } from './user/sign-up/sign-up.component';
+import { ProductAddComponent } from './components/products/product-add/product-add.component';
+import { NavbarComponent } from './components/shared/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -24,17 +31,27 @@ import { ProductSearchComponent } from './components/products/product-search/pro
     ShoppingCartComponent,
     ProductDetailComponent,
     ProductListComponent,
-    ProductSearchComponent
+    ProductSearchComponent,
+    SignInComponent,
+    SignUpComponent,
+    ProductAddComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
     NoopAnimationsModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     NgbModule,
+    ReactiveFormsModule,
     MatCheckboxModule,MatSliderModule,MatIconModule
   ],
-  providers: [SharedService],
+  providers: [SharedService, DatabaseService],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+  constructor(matIconRegistry: MatIconRegistry, domSanitizer: DomSanitizer){
+    matIconRegistry.addSvgIconSet(domSanitizer.bypassSecurityTrustResourceUrl('./assets/mdi.svg')); // Or whatever path you placed mdi.svg at
+  }
+}

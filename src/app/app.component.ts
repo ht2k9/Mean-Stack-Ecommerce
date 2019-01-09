@@ -7,8 +7,6 @@ import { SharedService } from './components/shared/shared.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  showLeft = false;
-  showRight = false;
   constructor(public sharedSrv: SharedService){}
 
   onOpenSidebar(){

@@ -1,0 +1,45 @@
+<div class="container mt-3">
+    <div class="row">
+      <div class="col">
+        <form (ngSubmit)="onComplete()" [formGroup]="productForm">
+          <div class="form-row">
+            <div class="form-group col-10 col-sm-9">
+              <label for="title">Title</label>
+              <input class="form-control" type="text" formControlName="title">
+            </div>
+            <div class="form-group col-2 col-sm-3">
+              <label for="price">Price</label>
+              <input class="form-control" type="number" formControlName="price" >
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <input class="form-control" type="text" formControlName="description" style="height: 5em">
+          </div>
+          <div class="form-group row" formArrayName="sizes">
+            <label class="col-sm-2 col-lg-1" for="size">Size</label>
+            <div class="col-3">
+              <input *ngFor="let size of allSizes.controls; let i = index" class="form-control" type="text" [formControlName]="i" >
+              <input value="+" class="form-control btn btn-primary" type="button" (click)="addSize()">
+            </div>
+          </div>
+          <div class="form-group row" formArrayName="colors">
+            <label class="col-sm-2 col-lg-1" for="color">Colors</label>
+            <div class="col-3">
+              <input *ngFor="let color of allColors.controls; let i = index" class="form-control" type="color" [formControlName]="i" >
+              <input value="+" class="form-control btn btn-primary" type="button" (click)="addColor()">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="images">Images</label>
+            <input class="form-control" placeholder="Main Image" type="text" formControlName="mainImage">
+            <div formArrayName="images">
+              <input *ngFor="let image of allImages.controls; let i=index" class="form-control" type="text" [formControlName]="i">
+            </div>
+            <input value="+" class="from-control btn btn-primary" type="button" (click)="addImage()">
+          </div>
+          <button [disabled]="productForm.invalid" class="btn btn-success" type="submit">Complete</button>
+        </form>
+      </div>
+    </div>
+  </div>

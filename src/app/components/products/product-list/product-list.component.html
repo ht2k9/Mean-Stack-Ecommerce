@@ -1,27 +1,20 @@
-<div class="container-fluid h-100">
+<div class="container-fluid p-0 h-100">
   <div class="row h-100">
-      <div class="col-md-3  p-0" [ngbCollapse]="sharedSrv.sidebarOpen">
+      <div class="col-md-4 col-lg-3" [ngbCollapse]="sharedSrv.sidebarOpen">
           <div class="row h-100 d-flex" style="background-color: rgb(168, 215, 233)">
               <app-product-search></app-product-search>
           </div>
       </div>
-      <div class="col p-0">
-          <div class="row" style="height: 35%">
-            <div class="col-6" style="background-color:rgb(236, 191, 230);">
-              <div class="float-left m-1 bg-info rounded-circle">
-                <p class="m-1" style="font-size:2em">$90</p>
-              </div>
+      <div class="col">
+          <div class="row h-100">
+            <div *ngFor="let product of products" class="col-sm-6 col-lg-3 text-center" style="background-color:rgb(236, 191, 230);">
+                <div class="float-left m-1 bg-info rounded-circle">
+                  <p class="m-1" style="font-size:2em">${{ product.cost }}</p>
+                </div>
+                <img [routerLink]="['/product', product.product_id]"  class="img-thumbnail"
+                 src="https://esposa.co.il/wp-content/uploads/2018/09/bazelet-stone-15-21.jpg" alt="{{ product.name }}">
+                <h2 class="mx-auto">{{ product.name }}</h2>
             </div>
-            <div class="col-6" style="background-color:rgb(232, 235, 199);">
-            </div>
-          </div>
-          <div class="row" style="height: 35%">
-            <div class="col-6" style="background-color:rgb(209, 205, 205);">lo</div>
-            <div class="col-6" style="background-color:rgb(240, 182, 204);">o</div>
-          </div>
-          <div class="row" style="height: 30%">
-            <div class="col-6" style="background-color:rgb(209, 231, 214);">lol</div>
-            <div class="col-6" style="background-color:rgb(250, 193, 193);">lol</div>
           </div>
       </div>
   </div>
