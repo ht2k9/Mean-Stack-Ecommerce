@@ -10,6 +10,7 @@ const shoppingCart = require("./users/shopping-cart");
 
 app = express();
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 app.use(cors());
 
 app.get("/", (req, res) => {

@@ -5,55 +5,72 @@ products = [
     {
         product_id: 1,
         title: 'Stone',
-        size: ['30x30', '40x40', '10x15'],
         description: '',
-        colors: ['red', 'blue'],
-        price: 50
+        mainImage: '',
+        price: 50,
+        sizes: ['30x30', '40x40', '10x15'],
+        colors: ['#64ec9a', '#64ec9a'],
+        images: ['red', 'blue']
     },
     {
         product_id: 2,
         title: 'Stone',
-        size: ['30x30', '40x40', '10x15'],
         description: '',
+        mainImage: '',
+        price: 50,
+        sizes: ['30x30', '40x40', '10x15'],
         colors: ['red', 'blue'],
-        price: 15
+        images: ['red', 'blue']
     },
     {
         product_id: 3,
         title: 'Stone',
-        size: ['30x30', '40x40', '10x15'],
         description: '',
-        colors: ['red', 'blue'],
-        price: 100
+        mainImage: '',
+        price: 50,
+        sizes: ['30x30', '40x40', '10x15'],
+        colors: ['#64ec9a', '#64ec9a'],
+        images: ['red', 'blue']
     },
     {
         product_id: 4,
         title: 'Stone',
-        size: ['30x30', '40x40', '10x15'],
         description: '',
+        mainImage: '',
+        price: 50,
+        sizes: ['30x30', '40x40', '10x15'],
         colors: ['red', 'blue'],
-        price: 50
+        images: ['red', 'blue']
     },
     {
         product_id: 5,
         title: 'Stone',
-        size: ['30x30', '40x40', '10x15'],
         description: '',
+        mainImage: '',
+        price: 50,
+        sizes: ['30x30', '40x40', '10x15'],
         colors: ['red', 'blue'],
-        price: 15
+        images: ['red', 'blue']
     },
     {
         product_id: 6,
         title: 'Stone',
-        size: ['30x30', '40x40', '10x15'],
         description: '',
+        mainImage: '',
+        price: 50,
+        sizes: ['30x30', '40x40', '10x15'],
         colors: ['red', 'blue'],
-        price: 100
+        images: ['red', 'blue']
     }
 ];
 
-router.get("/list", (req, res, next) => {
+router.get("/", (req, res, next) => {
     res.send(products); 
+    next();
+});
+
+router.post("/", (req, res, next) => {
+    res.send(req.body);
     next();
 });
 
@@ -64,6 +81,11 @@ router.get("/:id", (req, res, next) => {
         }
     });
     next();
+});
+
+router.put("/:id", (req, res, next) => {
+    res.send(req.body);  
+    next(); 
 });
 
 
