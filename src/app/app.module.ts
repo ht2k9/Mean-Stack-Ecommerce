@@ -18,10 +18,9 @@ import { ProductDetailComponent } from './components/products/product-detail/pro
 import { ProductListComponent } from './components/products/product-list/product-list.component';
 import { ProductSearchComponent } from './components/products/product-search/product-search.component';
 import { DatabaseService } from './components/shared/database.service';
-import { SignInComponent } from './user/sign-in/sign-in.component';
-import { SignUpComponent } from './user/sign-up/sign-up.component';
 import { ProductAddComponent } from './components/products/product-add/product-add.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
+import { SigninComponent } from './components/user/signin/signin.component';
 
 @NgModule({
   declarations: [
@@ -32,8 +31,7 @@ import { NavbarComponent } from './components/shared/navbar/navbar.component';
     ProductDetailComponent,
     ProductListComponent,
     ProductSearchComponent,
-    SignInComponent,
-    SignUpComponent,
+    SigninComponent,
     ProductAddComponent,
     NavbarComponent
   ],

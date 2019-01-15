@@ -1,33 +1,38 @@
+require("./config/database");
+
 const port = 3000;
 
-const functions = require('firebase-functions'),
+const 
+    functions = require('firebase-functions'),
     express = require("express"),
     bodyParser = require("body-parser"),
     cors = require("cors");
 
-const productList = require("./products/product");
-const shoppingCart = require("./users/shopping-cart");
+const productRoute = require("./products/product-route");
+const adminRoute = require("./users/admin/admin-route");
 
-app = express();
+
+const app = express();
+
+app.use(cors());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
-app.use(cors());
 
-app.get("/", (req, res) => {
-    res.send("Hello World!");
-});
+app.use(require("express-session")({
+    secret: "PhotoFactory e-commerce admin",
+    resave: false,
+    saveUninitialized: false
+}));
 
-// User
-// app.use('/user', shoppingCart);
+// Login logic
+app.use('/login', adminRoute);
 
-// Products
-app.use('/product', productList);
+// Products Logic
+app.use('/product', productRoute);
 
 app.listen(port, () =>{
     console.log("app listening to port "+port);
 });
-
-
 
 // Create and Deploy Your First Cloud Functions
 // https://firebase.google.com/docs/functions/write-firebase-functions

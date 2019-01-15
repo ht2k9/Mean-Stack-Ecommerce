@@ -1,12 +1,9 @@
-const mysql = require('mysql');
+const mongoose = require("mongoose");
+mongoose.connect('mongodb://localhost:27017/test', {useNewUrlParser: true});
 
-const connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'me',
-  password : 'secret',
-  database : 'my_db'
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  // we're connected!
+  //
 });
-
-connection.connect();
-
-module.exports = connection;
