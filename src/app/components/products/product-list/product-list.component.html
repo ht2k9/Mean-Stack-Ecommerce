@@ -9,11 +9,11 @@
           <div class="row h-100">
             <div *ngFor="let product of products" class="col-sm-6 col-lg-3 text-center" style="background-color:rgb(236, 191, 230);">
                 <div class="float-left m-1 bg-info rounded-circle">
-                  <p class="m-1" style="font-size:2em">${{ product.cost }}</p>
+                  <p class="m-1" style="font-size:2em">${{ product.price }}</p>
                 </div>
-                <img [routerLink]="['/product', product.product_id]"  class="img-thumbnail"
-                 src="https://esposa.co.il/wp-content/uploads/2018/09/bazelet-stone-15-21.jpg" alt="{{ product.name }}">
-                <h2 class="mx-auto">{{ product.name }}</h2>
+                <img [routerLink]="['/product', product._id]"  class="img-thumbnail"
+                 [src]="product.mainImage" [alt]="product.title">
+                <h2 class="mx-auto">{{ product.title }}</h2>
             </div>
           </div>
       </div>

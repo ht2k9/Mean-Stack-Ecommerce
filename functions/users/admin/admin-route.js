@@ -12,10 +12,17 @@ passport.deserializeUser(User.deserializeUser());
 
 router.post('/',
   passport.authenticate('local'),
-  (req, res) => {
+  (req, res, next) => {
   // If this function gets called, authentication was successful.
   // `req.user` contains the authenticated user.
     res.send(req.user);
+    next();
+});
+
+router.get('/', (req, res, next) => {
+  req.logOut();
+  res.send({user: null});
+  next();
 });
 
 module.exports = router;

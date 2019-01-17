@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DatabaseService } from '../../shared/database.service';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormControl, FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
-import { Product } from '../../shared/Product.modal';
+import { Product } from '../Product.modal';
 
 @Component({
   selector: 'app-product-add',
@@ -23,7 +23,7 @@ export class ProductAddComponent implements OnInit {
   editMode = false;
   selectedProduct : number;
 
-  constructor(private dataSrv: DatabaseService, private route: ActivatedRoute, private fb: FormBuilder) { }
+  constructor(private dataSrv: DatabaseService, private route: ActivatedRoute, private fb: FormBuilder, private router: Router) { }
 
   ngOnInit() {
     this.route.params.subscribe((param: Params) => {
@@ -55,6 +55,7 @@ export class ProductAddComponent implements OnInit {
         console.log(productData);
       });
     }
+    this.router.navigate(['/']);
   }
 
   get allSizes() {

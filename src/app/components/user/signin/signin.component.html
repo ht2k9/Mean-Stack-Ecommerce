@@ -25,6 +25,9 @@
             </div>
           </form>
         </div>
+        <div *ngIf="errorMsg" class="card-footer">
+          <p class="text-danger">{{ errorMsg }}</p>
+        </div>
       </div>
     </div>
   </div>

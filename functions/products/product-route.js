@@ -11,6 +11,7 @@ router.get("/", (req, res, next) => {
 
 router.post("/", (req, res, next) => {
     const product = new Product(req.body);
+    console.log(req.body);
     product.save((err)=>{
         if(err) throw err;
         res.send(product);

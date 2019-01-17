@@ -1,5 +1,11 @@
-<app-navbar></app-navbar>
-<div class="container-fluid h-100" style="padding-top: 55px">
+<ng-container *ngIf="sharedSrv.currentUser">
+    <div style="padding-bottom: 55px">
+        <app-navbar></app-navbar>
+    </div>
+</ng-container>
+<ng-container>
+</ng-container>
+<div class="container-fluid h-100">
     <div class="row h-100">
         <div [ngbCollapse]="!sharedSrv.sidebarOpen" class="col-3 p-0">
             <app-sidebar></app-sidebar>

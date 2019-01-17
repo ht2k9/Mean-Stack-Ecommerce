@@ -6,22 +6,25 @@ import { HomeComponent } from './components/shared/home/home.component';
 import { ProductDetailComponent } from './components/products/product-detail/product-detail.component';
 import { ProductListComponent } from './components/products/product-list/product-list.component';
 import { ProductAddComponent } from './components/products/product-add/product-add.component';
+import { SigninComponent } from './components/user/signin/signin.component';
 
 const routes: Routes = [
   {path:'', component: HomeComponent},
-  { path: 'product', children:[
+  {path: 'products', children:[
     {path: '', component: ProductListComponent},
     {path: 'add', component: ProductAddComponent},
     {path: 'edit/:id', component: ProductAddComponent},
     {path: ':id', component: ProductDetailComponent},
   ]
 },
-  { path: 'user', children:[
-      {path: 'shoppingcart', component: ShoppingCartComponent},
-      {path: 'orders', component: ShoppingCartComponent},
-      {path: 'profile', component: ShoppingCartComponent}
-    ]
-  },
+{path: 'login', component: SigninComponent},
+{path: 'orders', children:[
+    {path: '', component: ProductListComponent},
+    {path: 'search', component: ProductListComponent},
+    {path: ':id', component: ProductListComponent},
+  ]
+},
+{path: 'cart', component: ShoppingCartComponent}
 ];
 
 @NgModule({

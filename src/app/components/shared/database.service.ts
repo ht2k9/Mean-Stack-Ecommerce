@@ -1,12 +1,14 @@
-import { Injectable, OnInit } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders, HttpErrorResponse } from "@angular/common/http";
-import { Product } from "./Product.modal";
+
 import { catchError } from "rxjs/operators";
 import { throwError } from "rxjs/internal/observable/throwError";
 
+import { Product } from "../products/Product.modal";
+
 @Injectable()
 export class DatabaseService {
-    configUrl = "http://localhost:3000/product";
+    configUrl = "http://localhost:3000";
     httpOptions = {
         headers: new HttpHeaders({
           'Content-Type':  'application/json',
@@ -16,23 +18,43 @@ export class DatabaseService {
 
     constructor(private http: HttpClient){}
 
+    loginAdmin(credentials: any){
+        return this.http.post(`${this.configUrl}/signadmin`, JSON.stringify(credentials), this.httpOptions)
+            .pipe(
+              catchError(this.handleError)  
+            );
+    }
+
+    logoutAdmin(){
+        return this.http.get(`${this.configUrl}/signadmin`)
+            .pipe(
+                catchError(this.handleError)
+            );
+    }
+
     getProducts() {
-        return this.http.get(`${this.configUrl}`);
+        return this.http.get(`${this.configUrl}/product`)
+            .pipe(
+                catchError(this.handleError)  
+            );
     }
 
     getProductById(id: number){
-        return this.http.get(`${this.configUrl}/${id}`);
+        return this.http.get(`${this.configUrl}/product/${id}`)
+            .pipe(
+                catchError(this.handleError)  
+            );
     }
 
     addProduct(values: Product){
-        return this.http.post<Product>(`${this.configUrl}`, JSON.stringify(values), this.httpOptions)
+        return this.http.post<Product>(`${this.configUrl}/product`, JSON.stringify(values), this.httpOptions)
             .pipe(
                 catchError(this.handleError)
             );
     }
 
     editProduct(values: Product, id: number){
-        return this.http.put<Product>(`${this.configUrl}/${id}`, JSON.stringify(values), this.httpOptions)
+        return this.http.put<Product>(`${this.configUrl}/product/${id}`, JSON.stringify(values), this.httpOptions)
             .pipe(
                 catchError(this.handleError)
             );

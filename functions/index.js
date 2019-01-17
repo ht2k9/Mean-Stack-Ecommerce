@@ -25,7 +25,7 @@ app.use(require("express-session")({
 }));
 
 // Login logic
-app.use('/login', adminRoute);
+app.use('/signadmin', adminRoute);
 
 // Products Logic
 app.use('/product', productRoute);

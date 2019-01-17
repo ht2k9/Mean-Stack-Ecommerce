@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-  categories = ['about', 'sneakers', 'accessories', 'stores', 'contacts'];
+  categories = ['Home', 'Products', 'Orders', 'Shopping Cart', 'Signin'];
+  links = ['/', '/products', '/orders/search', '/cart', '/login'];
 
   constructor() { }
 

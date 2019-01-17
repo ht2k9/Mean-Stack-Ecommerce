@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { SharedService } from '../shared.service';
+import { DatabaseService } from '../database.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private sharedSrv: SharedService, private dataSrv: DatabaseService, private router: Router) { }
 
   ngOnInit() {
   }
 
+  onSignOut(){
+    this.dataSrv.logoutAdmin().subscribe(
+      (data) => {
+        if(data){
+          this.sharedSrv.currentUser = data['user'];
+          this.router.navigate(['/']);
+        }
+      }
+    );
+  }
 }
