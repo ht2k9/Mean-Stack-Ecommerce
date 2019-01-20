@@ -1,4 +1,4 @@
-<ng-container *ngIf="sharedSrv.currentUser">
+<ng-container *ngIf="sharedSrv.adminLogged">
     <div style="padding-bottom: 55px">
         <app-navbar></app-navbar>
     </div>
@@ -19,9 +19,9 @@
                    <mat-icon svgIcon="magnify"></mat-icon>
                 </div>
                 <div class="col align-self-buttom">
-                    <mat-icon svgIcon="facebook" class="my-1"></mat-icon>
-                    <mat-icon svgIcon="whatsapp" class="my-1"></mat-icon>
-                    <mat-icon svgIcon="phone" class="my-1"></mat-icon>
+                    <a href="https://www.facebook.com/photofactorynahef/"><mat-icon svgIcon="facebook" class="my-1"></mat-icon></a>     
+                    <mat-icon style="color: green" svgIcon="whatsapp" class="my-1" data-toggle="tooltip" data-placement="right" title="050-648-8757"></mat-icon>
+                    <mat-icon style="color: purple" svgIcon="phone" class="my-1" data-toggle="tooltip" data-placement="right" title="050-648-8757"></mat-icon>
                 </div>
             </div>
         </div>
@@ -33,13 +33,10 @@
         <div class="col-sm-2 col-1 bg-light" style="max-width:50px">
             <div class="row align-items-center h-100">
                 <div class="col">
-                   <mat-icon svgIcon="shopping" routerLink="/product/list"></mat-icon>
+                   <mat-icon svgIcon="shopping" routerLink="/products"></mat-icon>
                 </div>
                 <div class="col">
-                    <mat-icon svgIcon="cart-outline"></mat-icon>
-                </div>
-                <div class="col">
-                    <mat-icon svgIcon="account-outline"></mat-icon>
+                    <mat-icon svgIcon="cart-outline" routerLink="/cart"><span class="badge badge-primary badge-pill">{{ sharedSrv.cartItems.length }}</span></mat-icon>
                 </div>
             </div>
         </div>

@@ -23,13 +23,12 @@ export class SigninComponent implements OnInit {
     const credentials = form.value;
     
     this.dataSrv.loginAdmin(credentials).subscribe(
-      (data) => {
-        console.log(data);
-        if(data['username']){
-          this.sharedSrv.currentUser = data;
+      (data: boolean) => {
+        console.log(data)
+        if(data)
+          this.sharedSrv.adminLogged = data;
           this.router.navigate(['/']);
-        }
-      },
+        },
       (error) => {
         this.errorMsg = 'Wrong password or username';
       }

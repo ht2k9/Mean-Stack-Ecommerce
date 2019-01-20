@@ -9,29 +9,25 @@
               <thead>
               <tr>
                 <th scope="col">Product</th>
-                <th scope="col">Amount</th>
                 <th scope="col">Price</th>
                 <th scope="col">Delete</th>
               </tr>
             </thead>
               <tbody>
-                <tr>
+                <tr *ngFor="let product of products; let i = index">
                   <td>
-                    <div class="img-responsive rounded bg-muted">50X50</div>
-                    <h5>Gift Num 4</h5>
+                    <img [src]="product.mainImage" style="width: 5rem; height: 5rem">
+                    <h5>{{ product.title }}</h5>
                     <a class="text-secondary">details</a>
                   </td>
-                  <td>
-                    <input class="form-control" value="1" type="number" style="max-width:50px;">
-                  </td>
-                  <td><p>10.50$</p></td>
-                  <td><button class="btn text-secondary">X</button></td>
+                  <td><p>{{ product.price }}</p></td>
+                  <td><button (click)="removeProduct(i)" class="btn text-white">X</button></td>
                 </tr>
               </tbody>
             </table>
             <div class="row m-1 d-flex justify-content-between">
-              <a routerLink="/" class="my-auto text-white">Continue Shopping</a>
-              <p class="my-auto text-secondary">subTotal:<span class="text-white" style="font-size: 1.5em">$30</span></p>
+              <a routerLink="/" class="my-auto">Continue Shopping</a>
+              <p class="my-auto text-secondary">subTotal:<span class="text-white" style="font-size: 1.5em">{{ getTotalPrice() }}</span></p>
             </div>
           </div>
           </div>

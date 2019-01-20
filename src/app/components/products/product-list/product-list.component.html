@@ -11,7 +11,7 @@
                 <div class="float-left m-1 bg-info rounded-circle">
                   <p class="m-1" style="font-size:2em">${{ product.price }}</p>
                 </div>
-                <img [routerLink]="['/product', product._id]"  class="img-thumbnail"
+                <img [routerLink]="['/products', product._id]"  class="img-thumbnail"
                  [src]="product.mainImage" [alt]="product.title">
                 <h2 class="mx-auto">{{ product.title }}</h2>
             </div>

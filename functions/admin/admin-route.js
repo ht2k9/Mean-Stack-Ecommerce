@@ -15,13 +15,19 @@ router.post('/',
   (req, res, next) => {
   // If this function gets called, authentication was successful.
   // `req.user` contains the authenticated user.
-    res.send(req.user);
+    res.send(req.isAuthenticated());
     next();
 });
 
 router.get('/', (req, res, next) => {
+  console.log('logging out..');
   req.logOut();
-  res.send({user: null});
+  res.send(req.isAuthenticated());
+  next();
+});
+
+router.get('/current', (req, res, next) => {
+  res.send(req.isAuthenticated());
   next();
 });
 

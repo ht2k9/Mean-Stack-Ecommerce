@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { SharedService } from '../shared.service';
+import { DatabaseService } from '../database.service';
 
 @Component({
   selector: 'app-home',
@@ -8,9 +9,15 @@ import { SharedService } from '../shared.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(public sharedSrv: SharedService) { }
+  constructor(public sharedSrv: SharedService,
+      private dataSrv: DatabaseService) { }
 
   ngOnInit() {
+    this.dataSrv.isLoggedIn().subscribe(
+      (data: boolean) => {
+        console.log(data);
+        this.sharedSrv.adminLogged = data;
+    });
   }
 
 }

@@ -19,7 +19,7 @@ export class NavbarComponent implements OnInit {
     this.dataSrv.logoutAdmin().subscribe(
       (data) => {
         if(data){
-          this.sharedSrv.currentUser = data['user'];
+          this.sharedSrv.adminLogged = data['user'];
           this.router.navigate(['/']);
         }
       }

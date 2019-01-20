@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DatabaseService } from '../../shared/database.service';
 import { SharedService } from '../../shared/shared.service';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Product } from '../Product.modal';
 
 @Component({
@@ -12,8 +12,9 @@ import { Product } from '../Product.modal';
 export class ProductDetailComponent implements OnInit {
   product: Product;
   searchOpen = false;
-  constructor(private dataSrv: DatabaseService,
+  constructor(private router: Router,
     private route: ActivatedRoute,
+    private dataSrv: DatabaseService,
     public sharedSrv: SharedService) {}
 
   ngOnInit() {
@@ -24,4 +25,20 @@ export class ProductDetailComponent implements OnInit {
       });
     });
   }
+
+  onAddToCart(){
+    this.sharedSrv.addProductToCart(this.product);
+    // TODO : replace with animation
+    alert("Added To Cart");
+  }
+
+  onDeleteProduct(product_id: string){
+    this.dataSrv.deleteProduct(product_id).subscribe(
+      (data) => {
+        if(data['n'] == 1){
+          this.router.navigate(['/']);
+        }
+    });
+  }
+
 }

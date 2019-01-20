@@ -10,7 +10,7 @@
         <div class="card h-100">
           <div class="card-body mx-5 h-100">
             <div class="row align-items-center" style="height: 15%">
-              <a class="btn text-capitialize" style="font-size: 1.5em">Back</a>
+              <a class="btn text-capitialize" routerLink="/products" style="font-size: 1.5em">Back</a>
             </div>
             <div class="row align-items-center" style="height: 5%">
               <h4 *ngFor="let size of product.sizes" class="card-title text-secondary" style="font-size: 1.5em">{{ size }}</h4>
@@ -38,11 +38,19 @@
             </div>
             <div class="row h-25 align-items-start">
               <div class="col">
-                <button class="btn btn-dark text-white btn-lg" style="font-size: 1em">Add to Cart</button>
+                <button (click)="onAddToCart()" class="btn btn-dark text-white btn-lg" style="font-size: 1em">Add to Cart</button>
               </div>
-              <div class="col">
-                <button class="btn btn-outline-secondary btn-lg" style="font-size: 1em">Save for Later</button>
-              </div>
+              <ng-container *ngIf="sharedSrv.adminLogged">
+                <div ngbDropdown class="col align-self-bottom text-center">
+                  <button class="btn btn-secondary" ngbDropdownToggle type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Manage Product
+                  </button>
+                  <div ngbDropdownMenu aria-labelledby="dropdownMenuButton">
+                    <button class="dropdown-item" routerLink="edit" >Edit</button>
+                    <button class="dropdown-item" (click)="onDeleteProduct(product._id)">Delete</button>
+                  </div>
+                </div>
+              </ng-container>
           </div>
         </div>
       </div>

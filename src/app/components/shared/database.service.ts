@@ -19,14 +19,21 @@ export class DatabaseService {
     constructor(private http: HttpClient){}
 
     loginAdmin(credentials: any){
-        return this.http.post(`${this.configUrl}/signadmin`, JSON.stringify(credentials), this.httpOptions)
+        return this.http.post(`${this.configUrl}/admin`, JSON.stringify(credentials), this.httpOptions)
             .pipe(
               catchError(this.handleError)  
             );
     }
 
     logoutAdmin(){
-        return this.http.get(`${this.configUrl}/signadmin`)
+        return this.http.get(`${this.configUrl}/admin`)
+            .pipe(
+                catchError(this.handleError)
+            );
+    }
+
+    isLoggedIn(){
+        return this.http.get(`${this.configUrl}/admin/current`)
             .pipe(
                 catchError(this.handleError)
             );
@@ -37,6 +44,10 @@ export class DatabaseService {
             .pipe(
                 catchError(this.handleError)  
             );
+    }
+
+    deleteProduct(id: string) {
+        return this.http.delete(`${this.configUrl}/product/${id}`)
     }
 
     getProductById(id: number){
@@ -59,6 +70,8 @@ export class DatabaseService {
                 catchError(this.handleError)
             );
     }
+
+
 
     private handleError(error: HttpErrorResponse) {
         if (error.error instanceof ErrorEvent) {

@@ -9,7 +9,7 @@ const
     cors = require("cors");
 
 const productRoute = require("./products/product-route");
-const adminRoute = require("./users/admin/admin-route");
+const adminRoute = require("./admin/admin-route");
 
 
 const app = express();
@@ -20,12 +20,12 @@ app.use(bodyParser.json());
 
 app.use(require("express-session")({
     secret: "PhotoFactory e-commerce admin",
-    resave: false,
-    saveUninitialized: false
+    resave: true,
+    saveUninitialized: true
 }));
 
 // Login logic
-app.use('/signadmin', adminRoute);
+app.use('/admin', adminRoute);
 
 // Products Logic
 app.use('/product', productRoute);

@@ -13,8 +13,10 @@ const routes: Routes = [
   {path: 'products', children:[
     {path: '', component: ProductListComponent},
     {path: 'add', component: ProductAddComponent},
-    {path: 'edit/:id', component: ProductAddComponent},
-    {path: ':id', component: ProductDetailComponent},
+    {path: ':id', children:[
+      {path: '', component: ProductDetailComponent},
+      {path: 'edit', component: ProductAddComponent},
+    ]},
   ]
 },
 {path: 'login', component: SigninComponent},

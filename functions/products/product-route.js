@@ -28,9 +28,18 @@ router.get("/:id", (req, res, next) => {
 });
 
 router.put("/:id", (req, res, next) => {
-    Product.updateOne({ _id: req.params.id }, req.body, (err, res) => {
+    Product.updateOne({ _id: req.params.id }, req.body, (err, result) => {
+        console.log(result);
         res.send(req.body);  
         next(); 
+    });
+});
+
+router.delete("/:id", (req, res, next) => {
+    Product.deleteOne({_id: req.params.id}, (err, result) => {
+        if(err) throw err;
+        res.send(result)
+        next();
     });
 });
 
