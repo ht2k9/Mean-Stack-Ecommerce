@@ -11,7 +11,6 @@ router.get("/", (req, res, next) => {
 
 router.post("/", (req, res, next) => {
     const product = new Product(req.body);
-    console.log(req.body);
     product.save((err)=>{
         if(err) throw err;
         res.send(product);
@@ -28,20 +27,18 @@ router.get("/:id", (req, res, next) => {
 });
 
 router.put("/:id", (req, res, next) => {
-    Product.updateOne({ _id: req.params.id }, req.body, (err, result) => {
-        console.log(result);
+    Product.findByIdAndUpdate(req.params.id, req.body, (err, result) => {
         res.send(req.body);  
         next(); 
     });
 });
 
 router.delete("/:id", (req, res, next) => {
-    Product.deleteOne({_id: req.params.id}, (err, result) => {
+    Product.findByIdAndDelete(req.params.id, (err, result) => {
         if(err) throw err;
         res.send(result)
         next();
     });
 });
-
 
 module.exports = router;

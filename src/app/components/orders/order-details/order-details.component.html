@@ -1,0 +1,33 @@
+<div class="container-fluid h-100">
+  <div class="row h-75">
+    <div class="col align-self-center">
+      <div class="card" *ngIf="order">
+        <div class="card-header">
+          <h4>Order For: {{ order.costumer.name }}</h4>
+        </div>
+        <div class="card-body">
+          <p class="card-text">Phone Number: {{ formattedExp.phone }}</p>
+          <p class="card-text">E-mail: {{ order.costumer.email }}</p>
+          <p class="card-text">Address: {{ order.costumer.address }}</p>
+          <p class="card-text" maxlength="10">Date Required: {{ formattedExp.date_req }}</p>
+          <div *ngFor="let product of order.products" class="card">
+            <div class="card-body">
+              <a [routerLink]="['/products', product._id]">{{ card.title }}</a>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <p>Status: {{ order.status }}</p>
+          <div *ngIf="isAdmin" class="d-inline-block" ngbDropdown>
+            <button class="btn btn-outline-primary" id="dropdown" ngbDropdownToggle>Change Status</button>
+            <div ngbDropdownMenu aria-labelledby="dropdown">
+              <button (click)="onChangeStatus('cancelled')" class="dropdown-item">Cancel</button>
+              <button (click)="onChangeStatus('pending')" class="dropdown-item">Pending</button>
+              <button (click)="onChangeStatus('completed')" class="dropdown-item">Complete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

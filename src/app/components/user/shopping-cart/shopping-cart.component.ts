@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { SharedService } from '../../shared/shared.service';
 import { Product } from '../../products/Product.modal';
+import { OrderService } from '../../orders/order.service';
+import { Order } from '../../orders/order.modal';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -11,14 +13,27 @@ import { Product } from '../../products/Product.modal';
 export class ShoppingCartComponent implements OnInit {
   products: Product[];
 
-  constructor(private sharedSrv: SharedService) { }
+  constructor(private sharedSrv: SharedService,
+      private orderService: OrderService) { }
 
   ngOnInit() {
     this.products = this.sharedSrv.getCartItems();
   }
 
   onOrderSubmit(form: NgForm){
+    const {name, phone, email, address, date_required} = form.value;
+    const values = new Order (
+      {name, phone, email, address},
+      'pending',
+      date_required,
+      this.products
+    );
 
+    this.orderService.addOrder(values).subscribe(
+      (data: Order) => {
+        console.log(data);
+      }
+    );
   }
 
   removeProduct(index: number){

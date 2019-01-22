@@ -7,6 +7,9 @@ import { ProductDetailComponent } from './components/products/product-detail/pro
 import { ProductListComponent } from './components/products/product-list/product-list.component';
 import { ProductAddComponent } from './components/products/product-add/product-add.component';
 import { SigninComponent } from './components/user/signin/signin.component';
+import { OrderListComponent } from './components/orders/order-list/order-list.component';
+import { OrderTrackComponent } from './components/orders/order-track/order-track.component';
+import { OrderDetailsComponent } from './components/orders/order-details/order-details.component';
 
 const routes: Routes = [
   {path:'', component: HomeComponent},
@@ -21,9 +24,9 @@ const routes: Routes = [
 },
 {path: 'login', component: SigninComponent},
 {path: 'orders', children:[
-    {path: '', component: ProductListComponent},
-    {path: 'search', component: ProductListComponent},
-    {path: ':id', component: ProductListComponent},
+    {path: '', component: OrderListComponent},
+    {path: 'track', component: OrderTrackComponent},
+    {path: ':id', component: OrderDetailsComponent},
   ]
 },
 {path: 'cart', component: ShoppingCartComponent}

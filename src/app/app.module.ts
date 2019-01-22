@@ -21,6 +21,10 @@ import { DatabaseService } from './components/shared/database.service';
 import { ProductAddComponent } from './components/products/product-add/product-add.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { SigninComponent } from './components/user/signin/signin.component';
+import { OrderDetailsComponent } from './components/orders/order-details/order-details.component';
+import { OrderListComponent } from './components/orders/order-list/order-list.component';
+import { OrderTrackComponent } from './components/orders/order-track/order-track.component';
+import { OrderService } from './components/orders/order.service';
 
 @NgModule({
   declarations: [
@@ -33,7 +37,10 @@ import { SigninComponent } from './components/user/signin/signin.component';
     ProductSearchComponent,
     SigninComponent,
     ProductAddComponent,
-    NavbarComponent
+    NavbarComponent,
+    OrderDetailsComponent,
+    OrderListComponent,
+    OrderTrackComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +52,7 @@ import { SigninComponent } from './components/user/signin/signin.component';
     ReactiveFormsModule,
     MatCheckboxModule,MatSliderModule,MatIconModule
   ],
-  providers: [SharedService, DatabaseService],
+  providers: [SharedService, DatabaseService, OrderService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

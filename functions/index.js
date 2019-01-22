@@ -8,8 +8,9 @@ const
     bodyParser = require("body-parser"),
     cors = require("cors");
 
-const productRoute = require("./products/product-route");
-const adminRoute = require("./admin/admin-route");
+const productRoute = require('./products/product-route'),
+    adminRoute = require('./admin/admin-route'),
+    orderRoute = require('./orders/order-route');
 
 
 const app = express();
@@ -24,11 +25,14 @@ app.use(require("express-session")({
     saveUninitialized: true
 }));
 
-// Login logic
+// Login
 app.use('/admin', adminRoute);
 
-// Products Logic
+// Products
 app.use('/product', productRoute);
+
+// Orders
+app.use('/order', orderRoute);
 
 app.listen(port, () =>{
     console.log("app listening to port "+port);

@@ -1,0 +1,52 @@
+<div class="container-fluid p-0 h-100">
+  <div class="row">
+    <div class="col">
+      <div class="jumbotron">
+        <h1 class="display-4">Hello, Admin!</h1>
+        <p class="lead">This is order management, click on order to show it's details and to complete it</p>
+        <hr class="my-4">
+        <p>PS: You can click on the order products to see a list of the required products.</p>
+        <div class="row">
+          <div class="col">
+            <button class="btn btn-primary btn-lg">Button 1</button>
+          </div>
+          <div class="col">
+            <button class="btn btn-success btn-lg">Button 2</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-header">
+            <table class="table table-hover table-responsive-md">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Number</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Address</th>
+                  <th scope="col">Date Required</th>
+                  <th scope="col">Products</th>
+                  <th scope="col">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let order of orders; let i = index" [routerLink]="['/orders', order._id]">
+                  <td>{{ order.costumer.name }}</td>
+                  <td><p *ngIf="order.costumer.phone">{{ orderService.formatPhone(order.costumer.phone.toString()) }}</p></td>
+                  <td>{{ order.costumer.email }}</td>
+                  <td>{{ order.costumer.address }}</td>
+                  <td><p *ngIf="order.date_required">{{ orderService.formatDate(order.date_required) }}</p></td>
+                  <td>{{ order.products.length }}</td>
+                  <td>{{ order.status }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

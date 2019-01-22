@@ -73,7 +73,7 @@ export class DatabaseService {
 
 
 
-    private handleError(error: HttpErrorResponse) {
+    public handleError(error: HttpErrorResponse) {
         if (error.error instanceof ErrorEvent) {
           // A client-side or network error occurred. Handle it accordingly.
           console.error('An error occurred:', error.error.message);
