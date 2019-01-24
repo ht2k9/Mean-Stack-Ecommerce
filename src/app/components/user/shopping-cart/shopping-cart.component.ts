@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { SharedService } from '../../shared/shared.service';
-import { Product } from '../../products/Product.modal';
+import { Product } from '../../products/product.modal';
 import { OrderService } from '../../orders/order.service';
 import { Order } from '../../orders/order.modal';
 

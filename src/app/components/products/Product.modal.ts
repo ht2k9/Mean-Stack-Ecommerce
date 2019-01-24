@@ -4,6 +4,7 @@ export class Product {
             public description: string,
             public mainImage: string,
             public price: number,
+            public tags: [],
             public sizes: [],
             public colors: [],
             public images: [] 

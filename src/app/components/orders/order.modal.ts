@@ -1,4 +1,4 @@
-import { Product } from "../products/Product.modal";
+import { Product } from "../products/product.modal";
 
 export class Order{
     constructor(

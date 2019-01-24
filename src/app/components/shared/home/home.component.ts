@@ -8,7 +8,9 @@ import { DatabaseService } from '../database.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
+  images = ['https://picsum.photos/900/500/?image=374',
+   'https://picsum.photos/900/500/?image=376',
+  'https://picsum.photos/900/500/?image=378'];
   constructor(public sharedSrv: SharedService,
       private dataSrv: DatabaseService) { }
 

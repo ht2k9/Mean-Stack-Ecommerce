@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DatabaseService } from '../../shared/database.service';
 import { SharedService } from '../../shared/shared.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { Product } from '../Product.modal';
+import { Product } from '../product.modal';
 
 @Component({
   selector: 'app-product-detail',

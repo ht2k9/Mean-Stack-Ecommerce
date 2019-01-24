@@ -1,10 +1,9 @@
 import { Injectable } from "@angular/core";
-import { Product } from "../products/Product.modal";
+import { Product } from "../products/product.modal";
+import { BehaviorSubject } from "rxjs/internal/BehaviorSubject";
 
-
-Injectable()
+@Injectable()
 export class SharedService{
-    public sidebarOpen = false;
     public adminLogged: boolean;
     
     cartItems = [];

@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from "@angular/common/http
 import { catchError } from "rxjs/operators";
 import { throwError } from "rxjs/internal/observable/throwError";
 
-import { Product } from "../products/Product.modal";
+import { Product } from "../products/product.modal";
 
 @Injectable()
 export class DatabaseService {

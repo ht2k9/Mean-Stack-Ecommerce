@@ -1,19 +1,12 @@
-<ng-container *ngIf="sharedSrv.adminLogged">
-    <div style="padding-bottom: 55px">
-        <app-navbar></app-navbar>
-    </div>
-</ng-container>
-<ng-container>
-</ng-container>
+<div>
+    <app-navbar></app-navbar>
+</div>
 <div class="container-fluid h-100">
     <div class="row h-100">
-        <div [ngbCollapse]="!sharedSrv.sidebarOpen" class="col-3 p-0">
-            <app-sidebar></app-sidebar>
-        </div>
         <div class="col-sm-2 col-1 bg-transparent" style="max-width:50px">
             <div class="row align-items-center h-100">
                 <div class="col">
-                   <mat-icon svgIcon="menu-open" (click)="sharedSrv.sidebarOpen = !sharedSrv.sidebarOpen"></mat-icon>
+                   <mat-icon svgIcon="menu-open" (click)="navbarClosed = !navbarClosed"></mat-icon>
                 </div>
                 <div class="col align-self-start">
                    <mat-icon svgIcon="magnify"></mat-icon>
@@ -33,12 +26,17 @@
         <div class="col-sm-2 col-1 bg-light" style="max-width:50px">
             <div class="row align-items-center h-100">
                 <div class="col">
-                   <mat-icon svgIcon="shopping" routerLink="/products"></mat-icon>
+                  <a routerLink="/products" routerLinkActive><mat-icon svgIcon="shopping"></mat-icon></a>
                 </div>
                 <div class="col">
-                    <mat-icon svgIcon="cart-outline" routerLink="/cart"><span class="badge badge-primary badge-pill">{{ sharedSrv.cartItems.length }}</span></mat-icon>
+                   <a routerLink="/cart" routerLinkActive><mat-icon svgIcon="cart-outline"><span class="badge badge-primary badge-pill">{{ sharedService.cartItems.length }}</span></mat-icon></a>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<ng-container *ngIf="sharedService.adminLogged">
+    <div style="padding-bottom: 55px">
+        <app-navbar></app-navbar>
+    </div>
+</ng-container>

@@ -1,15 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { MatCheckboxModule, MatSliderModule } from '@angular/material';
+import { MatCheckboxModule, MatSliderModule, MatSidenavModule, MatDividerModule } from '@angular/material';
 import { MatIconRegistry, MatIconModule } from '@angular/material';
 import { DomSanitizer } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SidebarComponent } from './components/shared/sidebar/sidebar.component';
 import { HomeComponent } from './components/shared/home/home.component';
 import { ShoppingCartComponent } from './components/user/shopping-cart/shopping-cart.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -29,7 +28,6 @@ import { OrderService } from './components/orders/order.service';
 @NgModule({
   declarations: [
     AppComponent,
-    SidebarComponent,
     HomeComponent,
     ShoppingCartComponent,
     ProductDetailComponent,
@@ -44,13 +42,13 @@ import { OrderService } from './components/orders/order.service';
   ],
   imports: [
     BrowserModule,
-    NoopAnimationsModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
     NgbModule,
     ReactiveFormsModule,
-    MatCheckboxModule,MatSliderModule,MatIconModule
+    MatCheckboxModule,MatSliderModule,MatIconModule,MatSidenavModule,MatDividerModule
   ],
   providers: [SharedService, DatabaseService, OrderService],
   bootstrap: [AppComponent]

@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
+  isCollapsed = true;
   constructor(private sharedSrv: SharedService, private dataSrv: DatabaseService, private router: Router) { }
 
   ngOnInit() {
