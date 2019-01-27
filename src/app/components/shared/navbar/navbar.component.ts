@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { SharedService } from '../shared.service';
-import { DatabaseService } from '../database.service';
 import { Router } from '@angular/router';
+
+import { SharedService } from '../shared.service';
 
 @Component({
   selector: 'app-navbar',
@@ -9,17 +9,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  isCollapsed = true;
-  constructor(private sharedSrv: SharedService, private dataSrv: DatabaseService, private router: Router) { }
+  isAdmin = false;
+  constructor(private sharedService: SharedService,
+    private router: Router) { }
 
   ngOnInit() {
+    this.isAdmin = this.sharedService.adminLogged;
   }
 
   onSignOut(){
-    this.dataSrv.logoutAdmin().subscribe(
+    this.sharedService.logoutAdmin().subscribe(
       (data) => {
         if(data){
-          this.sharedSrv.adminLogged = data['user'];
+          this.sharedService.adminLogged = data['user'];
           this.router.navigate(['/']);
         }
       }

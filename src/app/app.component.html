@@ -3,7 +3,7 @@
 </div>
 <div class="container-fluid h-100">
     <div class="row h-100">
-        <div class="col-sm-2 col-1 bg-transparent" style="max-width:50px">
+        <div class="col-sm-2 col-1 bg-light" style="max-width:50px">
             <div class="row align-items-center h-100">
                 <div class="col">
                    <mat-icon svgIcon="menu-open" (click)="navbarClosed = !navbarClosed"></mat-icon>
@@ -19,7 +19,7 @@
             </div>
         </div>
 
-        <div class="col"> 
+        <div class="col p-0"> 
             <router-outlet></router-outlet>
         </div>
 
@@ -35,8 +35,3 @@
         </div>
     </div>
 </div>
-<ng-container *ngIf="sharedService.adminLogged">
-    <div style="padding-bottom: 55px">
-        <app-navbar></app-navbar>
-    </div>
-</ng-container>

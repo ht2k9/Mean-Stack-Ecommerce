@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { catchError } from "rxjs/operators";
-import { DatabaseService } from "../shared/database.service";
+import { ProductService } from "../products/product.service";
 import { Order } from "./order.modal";
 
 @Injectable()
@@ -9,7 +9,7 @@ export class OrderService{
     public selectedOrder : Order;
     
     constructor(private http: HttpClient,
-        private databaseService: DatabaseService){}
+        private databaseService: ProductService){}
 
     getOrders() {
         return this.http.get(`${this.databaseService.configUrl}/order`)

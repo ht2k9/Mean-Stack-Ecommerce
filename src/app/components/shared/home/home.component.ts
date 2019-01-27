@@ -1,6 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { SharedService } from '../shared.service';
-import { DatabaseService } from '../database.service';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -8,18 +6,14 @@ import { DatabaseService } from '../database.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  images = ['https://picsum.photos/900/500/?image=374',
-   'https://picsum.photos/900/500/?image=376',
-  'https://picsum.photos/900/500/?image=378'];
-  constructor(public sharedSrv: SharedService,
-      private dataSrv: DatabaseService) { }
+  showSearch = false;
+  
+  constructor() { }
 
   ngOnInit() {
-    this.dataSrv.isLoggedIn().subscribe(
-      (data: boolean) => {
-        console.log(data);
-        this.sharedSrv.adminLogged = data;
-    });
   }
 
+  filterProducts(){
+    
+  }
 }

@@ -4,10 +4,10 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from "@angular/common/http
 import { catchError } from "rxjs/operators";
 import { throwError } from "rxjs/internal/observable/throwError";
 
-import { Product } from "../products/product.modal";
+import { Product } from "./product.modal";
 
 @Injectable()
-export class DatabaseService {
+export class ProductService {
     configUrl = "http://localhost:3000";
     httpOptions = {
         headers: new HttpHeaders({
@@ -16,28 +16,9 @@ export class DatabaseService {
         })
       };
 
+    products: Product[];
+
     constructor(private http: HttpClient){}
-
-    loginAdmin(credentials: any){
-        return this.http.post(`${this.configUrl}/admin`, JSON.stringify(credentials), this.httpOptions)
-            .pipe(
-              catchError(this.handleError)  
-            );
-    }
-
-    logoutAdmin(){
-        return this.http.get(`${this.configUrl}/admin`)
-            .pipe(
-                catchError(this.handleError)
-            );
-    }
-
-    isLoggedIn(){
-        return this.http.get(`${this.configUrl}/admin/current`)
-            .pipe(
-                catchError(this.handleError)
-            );
-    }
 
     getProducts() {
         return this.http.get(`${this.configUrl}/product`)

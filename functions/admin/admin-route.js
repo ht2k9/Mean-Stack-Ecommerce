@@ -1,12 +1,13 @@
 const router = require("express").Router();
 const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
 
 const User = require("./admin-model");
 
 router.use(passport.initialize());
 router.use(passport.session());
 
-passport.use((User.createStrategy()));
+passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
@@ -15,19 +16,17 @@ router.post('/',
   (req, res, next) => {
   // If this function gets called, authentication was successful.
   // `req.user` contains the authenticated user.
-    res.send(req.isAuthenticated());
-    next();
+
+  console.log(req.session);
+  res.send(req.isAuthenticated());
+  next();
 });
 
 router.get('/', (req, res, next) => {
   console.log('logging out..');
   req.logOut();
-  res.send(req.isAuthenticated());
-  next();
-});
-
-router.get('/current', (req, res, next) => {
-  res.send(req.isAuthenticated());
+  req.session.destroy();
+  res.send(req.user);
   next();
 });
 

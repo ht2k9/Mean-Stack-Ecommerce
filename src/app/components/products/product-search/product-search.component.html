@@ -1,24 +1,26 @@
-<div class="container">
-  <div class="row">
-    <form class="mx-5 mt-5 p-0" (ngSubmit)="submitSearch(form)" #form="ngForm">
-      <div class="form-group">
-        <label>TYPE</label>
-        <div class="form-check" *ngFor="let type of types">
-            <mat-checkbox>{{ type }}</mat-checkbox>
-          <!-- <input type="checkbox" value="type" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">{{ type }}</label> -->
-        </div>
-      </div>
+<div class="row">
+  <div class="col-12">
+    <form class="m-5 p-0"  [formGroup]="searchForm" (ngSubmit)="submitSearch(form)">
       <div class="form-group">
         <label for="price">PRICE</label>
-        <mat-slider></mat-slider>
+        <mat-slider min="20" max="500" value="320" step="30" thumbLabel formControlName="maxPrice"></mat-slider>
       </div>
       <div class="form-group">
-        <label>STYLE</label>
-        <div class="form-check" *ngFor="let style of styles">
-          <mat-checkbox>{{ style }}</mat-checkbox>
+        <label>TAGS</label>
+        <div class="form-check form-row" formArrayName="tags">
+          <div class="col-4" *ngFor="let tag of tags.controls; let i=index">
+            <mat-checkbox [formControlName]="i">{{ allTags[i] }}</mat-checkbox>
+          </div>
         </div>
       </div>
+      <button type="submit" class="btn btn-primary">Search</button>
     </form>
+  </div>
+  <div class="col-12">
+    <ul class="pagination justify-content-center">
+      <li class="page-item text-primary"><a class="page-link" (click)="onSwitchPage(selectedPage-1)">Previous</a></li>
+      <li class="page-item text-primary" *ngFor="let page of pages; let i = index"><a class="page-link" (click)="onSwitchPage(i)">{{ i+1 }}</a></li>
+      <li class="page-item text-primary"><a class="page-link" (click)="onSwitchPage(selectedPage+1)">Next</a></li>
+    </ul>
   </div>
 </div>

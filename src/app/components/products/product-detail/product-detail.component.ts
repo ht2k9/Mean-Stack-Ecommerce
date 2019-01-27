@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DatabaseService } from '../../shared/database.service';
+import { ProductService } from '../product.service';
 import { SharedService } from '../../shared/shared.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Product } from '../product.modal';
@@ -14,7 +14,7 @@ export class ProductDetailComponent implements OnInit {
   searchOpen = false;
   constructor(private router: Router,
     private route: ActivatedRoute,
-    private dataSrv: DatabaseService,
+    private dataSrv: ProductService,
     public sharedSrv: SharedService) {}
 
   ngOnInit() {

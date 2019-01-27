@@ -1,29 +1,14 @@
 <div class="container-fluid h-100">
     <div class="row h-100">
-        <div class="col-lg-6 p-0">
+        <div class="col-lg-6">
             <div class="row h-100 d-flex align-items-start" style="background-color: rgb(168, 215, 233)">
                 <div class="float-left m-3 bg-primary rounded-circle">
                     <p class="m-1" style="font-size:2em">$90</p>
                 </div>
             </div>
         </div>
-        <div class="col p-0">
-            <div class="row" style="height: 35%">
-                <div class="col-6" style="background-color:rgb(36, 33, 35);">
-                    <div class="float-left m-1 bg-primary rounded-circle">
-                    <p class="m-1" style="font-size:2em">$90</p>
-                </div>
-            </div>
-            <div class="col-6" style="background-color:rgb(232, 235, 199);">H</div>
-            </div>
-            <div class="row" style="height: 35%">
-                <div class="col-6" style="background-color:rgb(209, 205, 205);">lo</div>
-                <div class="col-6" style="background-color:rgb(240, 182, 204);">o</div>
-            </div>
-            <div class="row" style="height: 30%">
-                <div class="col-6" style="background-color:rgb(209, 231, 214);">lol</div>
-                <div class="col-6" style="background-color:rgb(250, 193, 193);">lol</div>
-            </div>
+        <div class="col">
+            <app-product-list [showSearch]="showSearch"></app-product-list>
         </div>
     </div>
 </div>

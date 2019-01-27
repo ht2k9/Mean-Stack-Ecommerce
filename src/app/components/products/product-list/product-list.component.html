@@ -1,21 +1,22 @@
-<div class="container-fluid p-0 h-100">
+
   <div class="row h-100">
-      <div class="col-md-4 col-lg-3" [ngbCollapse]="sharedSrv.sidebarOpen">
-          <div class="row h-100 d-flex" style="background-color: rgb(168, 215, 233)">
-              <app-product-search></app-product-search>
-          </div>
-      </div>
-      <div class="col">
-          <div class="row h-100">
-            <div *ngFor="let product of products" class="col-sm-6 col-lg-3 text-center" style="background-color:rgb(236, 191, 230);">
+    <ng-container *ngIf="showSearch">
+        <div class="col-md-4 col-lg-3">
+            <div class="row h-100 d-flex align-items-center" style="background-color: rgb(168, 215, 233)">
+                <app-product-search [filteredProducts]="filteredProducts" (searchResults)="searchProducts($event)" (selectedPage)="productsPerPage($event)"></app-product-search>
+            </div>
+        </div>
+    </ng-container>
+    <div class="col">
+        <div class="row">
+            <div *ngFor="let product of shownProducts" class="col-sm-6 col-lg-3 text-center" style="background-color:rgb(236, 191, 230);">
                 <div class="float-left m-1 bg-info rounded-circle">
                   <p class="m-1" style="font-size:2em">${{ product.price }}</p>
                 </div>
                 <img [routerLink]="['/products', product._id]"  class="img-thumbnail"
                  [src]="product.mainImage" [alt]="product.title">
                 <h2 class="mx-auto">{{ product.title }}</h2>
-            </div>
-          </div>
-      </div>
+            </div>       
+        </div>
+    </div>
   </div>
-</div>

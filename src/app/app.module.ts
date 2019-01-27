@@ -16,7 +16,7 @@ import { SharedService } from './components/shared/shared.service';
 import { ProductDetailComponent } from './components/products/product-detail/product-detail.component';
 import { ProductListComponent } from './components/products/product-list/product-list.component';
 import { ProductSearchComponent } from './components/products/product-search/product-search.component';
-import { DatabaseService } from './components/shared/database.service';
+import { ProductService } from './components/products/product.service';
 import { ProductAddComponent } from './components/products/product-add/product-add.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { SigninComponent } from './components/user/signin/signin.component';
@@ -50,7 +50,7 @@ import { OrderService } from './components/orders/order.service';
     ReactiveFormsModule,
     MatCheckboxModule,MatSliderModule,MatIconModule,MatSidenavModule,MatDividerModule
   ],
-  providers: [SharedService, DatabaseService, OrderService],
+  providers: [SharedService, ProductService, OrderService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

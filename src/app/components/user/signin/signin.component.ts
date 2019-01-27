@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { DatabaseService } from '../../shared/database.service';
+import { ProductService } from '../../products/product.service';
 import { SharedService } from '../../shared/shared.service';
 import { Router } from '@angular/router';
 
@@ -12,8 +12,7 @@ import { Router } from '@angular/router';
 export class SigninComponent implements OnInit {
   errorMsg = null;
 
-  constructor(private dataSrv: DatabaseService,
-    private sharedSrv: SharedService,
+  constructor(private sharedService: SharedService,
     private router: Router) { }
 
   ngOnInit() {
@@ -22,11 +21,11 @@ export class SigninComponent implements OnInit {
   onSignin(form: NgForm){
     const credentials = form.value;
     
-    this.dataSrv.loginAdmin(credentials).subscribe(
+    this.sharedService.loginAdmin(credentials).subscribe(
       (data: boolean) => {
         console.log(data)
         if(data)
-          this.sharedSrv.adminLogged = data;
+          this.sharedService.adminLogged = true;
           this.router.navigate(['/']);
         },
       (error) => {

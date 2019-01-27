@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { DatabaseService } from '../../shared/database.service';
+import { ProductService } from '../product.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { FormControl, FormGroup, FormArray, FormBuilder, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Product } from '../product.modal';
+import { SharedService } from '../../shared/shared.service';
 
 @Component({
   selector: 'app-product-add',
@@ -10,35 +11,49 @@ import { Product } from '../product.modal';
   styleUrls: ['./product-add.component.css']
 })
 export class ProductAddComponent implements OnInit {
-  productForm = this.fb.group({
-    title: ['', Validators.required],
-    price: ['', Validators.required],
-    description: ['', Validators.required],
-    mainImage: ['', Validators.required],
-    colors: this.fb.array([]),
-    sizes: this.fb.array([]),
-    images: this.fb.array([]),
-  });
-
   editMode = false;
-  selectedProduct : number;
 
-  constructor(private dataSrv: DatabaseService, private route: ActivatedRoute, private fb: FormBuilder, private router: Router) { }
+  tags: string[];
+  productForm: FormGroup;
+  selectedProduct: Product;
+  selectedProductID : number;
+
+  constructor(private dataSrv: ProductService,
+    private sharedService: SharedService,
+    private route: ActivatedRoute,
+    private fb: FormBuilder,
+    private router: Router) {}
 
   ngOnInit() {
+    this.tags = this.sharedService.tags;
+
+    this.productForm = this.fb.group({
+      title: ['', Validators.required],
+      price: ['', Validators.required],
+      description: ['', Validators.required],
+      mainImage: ['', Validators.required],
+      colors: this.fb.array([]),
+      tags: this.fb.array(this.sharedService.tags),
+      sizes: this.fb.array([]),
+      images: this.fb.array([]),
+    });
+
     this.route.params.subscribe((param: Params) => {
       if(param.id){
         this.selectedProduct = param.id;
-        this.dataSrv.getProductById(this.selectedProduct).subscribe((data: Product) => {
+        this.dataSrv.getProductById(this.selectedProductID).subscribe((data: Product) => {
+          this.selectedProduct = data;
+          const { title, price, description, mainImage, colors, sizes, images} = data;
           this.editMode = true;
           this.productForm = this.fb.group({
-            title: data.title,
-            price: data.price,
-            description: data.description,
-            mainImage: data.mainImage,
-            colors: this.fb.array(data.colors),
-            sizes: this.fb.array(data.sizes),
-            images: this.fb.array(data.images),
+            title: title,
+            price: price,
+            description: description,
+            mainImage: mainImage,
+            colors: this.fb.array(colors),
+            tags: this.fb.array(this.tags),
+            sizes: this.fb.array(sizes),
+            images: this.fb.array(images),
           })
         });
       }
@@ -47,7 +62,7 @@ export class ProductAddComponent implements OnInit {
 
   onComplete(){
     if(this.editMode){
-      this.dataSrv.editProduct(this.productForm.value, this.selectedProduct).subscribe((productData:Product) => {
+      this.dataSrv.editProduct(this.productForm.value, this.selectedProductID).subscribe((productData:Product) => {
         console.log(productData);
       });
     } else{
@@ -56,6 +71,18 @@ export class ProductAddComponent implements OnInit {
       });
     }
     this.router.navigate(['/']);
+  }
+
+  shouldCheck(tag: string): boolean{
+    if(!this.editMode){
+      return false;
+    }
+
+    if(this.selectedProduct.tags.includes(tag)){
+      return true;
+    }
+
+    return false;
   }
 
   get allSizes() {
