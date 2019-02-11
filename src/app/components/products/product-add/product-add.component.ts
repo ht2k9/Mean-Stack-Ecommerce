@@ -1,16 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../product.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { FormArray, FormBuilder, Validators, FormGroup } from '@angular/forms';
+
 import { Product } from '../product.modal';
+import { ProductService } from '../product.service';
 import { SharedService } from '../../shared/shared.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-product-add',
   templateUrl: './product-add.component.html',
   styleUrls: ['./product-add.component.css']
 })
-export class ProductAddComponent implements OnInit {
+export class ProductAddComponent implements OnInit, OnDestroy {
+  private subscription = new Subscription();
   editMode = false;
 
   tags: string[];
@@ -18,7 +21,7 @@ export class ProductAddComponent implements OnInit {
   selectedProduct: Product;
   selectedProductID : number;
 
-  constructor(private dataSrv: ProductService,
+  constructor(private productService: ProductService,
     private sharedService: SharedService,
     private route: ActivatedRoute,
     private fb: FormBuilder,
@@ -41,7 +44,7 @@ export class ProductAddComponent implements OnInit {
     this.route.params.subscribe((param: Params) => {
       if(param.id){
         this.selectedProduct = param.id;
-        this.dataSrv.getProductById(this.selectedProductID).subscribe((data: Product) => {
+        this.subscription.add(this.productService.getProductById(this.selectedProductID).subscribe((data: Product) => {
           this.selectedProduct = data;
           const { title, price, description, mainImage, colors, sizes, images} = data;
           this.editMode = true;
@@ -55,20 +58,20 @@ export class ProductAddComponent implements OnInit {
             sizes: this.fb.array(sizes),
             images: this.fb.array(images),
           })
-        });
+        }));
       }
     });
   }
 
   onComplete(){
     if(this.editMode){
-      this.dataSrv.editProduct(this.productForm.value, this.selectedProductID).subscribe((productData:Product) => {
+      this.subscription.add(this.productService.editProduct(this.productForm.value, this.selectedProductID).subscribe((productData:Product) => {
         console.log(productData);
-      });
+      }));
     } else{
-      this.dataSrv.addProduct(this.productForm.value).subscribe((productData: Product) => {
+      this.subscription.add(this.productService.addProduct(this.productForm.value).subscribe((productData: Product) => {
         console.log(productData);
-      });
+      }));
     }
     this.router.navigate(['/']);
   }
@@ -103,5 +106,9 @@ export class ProductAddComponent implements OnInit {
   }
   addImage(){
     this.allImages.push(this.fb.control('', Validators.required));
+  }
+
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
   }
 }

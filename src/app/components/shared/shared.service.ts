@@ -1,4 +1,4 @@
-import { Injectable } from "@angular/core";
+import { Injectable, EventEmitter } from "@angular/core";
 import { HttpClient, HttpHeaders, HttpErrorResponse } from "@angular/common/http";
 import { catchError } from "rxjs/internal/operators/catchError";
 import { Subject, throwError } from "rxjs";
@@ -16,7 +16,8 @@ export class SharedService{
       };
       
     adminLogged = false;
-    
+    adminStateChanged = new EventEmitter<boolean>();
+
     maxPrice = 500;
     selectedTags = new Subject<string[]>();
     tags = [
@@ -52,6 +53,12 @@ export class SharedService{
             .pipe(
                 catchError(this.handleError)
             );
+    }
+
+    adminState(isLogged: boolean){
+        console.log(isLogged);
+        this.adminLogged = isLogged;
+        this.adminStateChanged.emit(isLogged);
     }
 
     public handleError(error: HttpErrorResponse) {

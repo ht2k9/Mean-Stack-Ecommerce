@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { OrderService } from '../order.service';
 import { Router } from '@angular/router';
+
 import { Order } from '../order.modal';
+import { OrderService } from '../order.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-order-track',
   templateUrl: './order-track.component.html',
   styleUrls: ['./order-track.component.css']
 })
-export class OrderTrackComponent implements OnInit {
+export class OrderTrackComponent implements OnInit, OnDestroy {
+  private subscription = new Subscription();
+
   constructor(private orderService: OrderService,
       private router: Router) { }
 
@@ -17,7 +21,7 @@ export class OrderTrackComponent implements OnInit {
   }
 
   onTrackSubmit(form: NgForm){
-    this.orderService.getOrderByID(form.value.orderNumber).subscribe(
+    this.subscription.add(this.orderService.getOrderByID(form.value.orderNumber).subscribe(
       (order: Order) => {
         if(order['_id']){
           this.orderService.selectedOrder = order;
@@ -27,7 +31,10 @@ export class OrderTrackComponent implements OnInit {
         }
         form.reset();
       }
-    );
+    ));
   }
 
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
+  }
 }

@@ -25,8 +25,7 @@ router.post('/',
 router.get('/', (req, res, next) => {
   console.log('logging out..');
   req.logOut();
-  req.session.destroy();
-  res.send(req.user);
+  res.send(req.isAuthenticated());
   next();
 });
 

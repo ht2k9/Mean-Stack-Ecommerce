@@ -9,7 +9,7 @@
                    <mat-icon svgIcon="menu-open" (click)="navbarClosed = !navbarClosed"></mat-icon>
                 </div>
                 <div class="col align-self-start">
-                   <mat-icon svgIcon="magnify"></mat-icon>
+                    <a routerLink="/orders/track" routerLinkActive><mat-icon svgIcon="magnify"></mat-icon></a>
                 </div>
                 <div class="col align-self-buttom">
                     <a href="https://www.facebook.com/photofactorynahef/"><mat-icon svgIcon="facebook" class="my-1"></mat-icon></a>     
@@ -23,7 +23,7 @@
             <router-outlet></router-outlet>
         </div>
 
-        <div class="col-sm-2 col-1 bg-light" style="max-width:50px">
+        <div class="col-xs-2 col-1 bg-light" style="max-width:50px">
             <div class="row align-items-center h-100">
                 <div class="col">
                   <a routerLink="/products" routerLinkActive><mat-icon svgIcon="shopping"></mat-icon></a>

@@ -1,0 +1,69 @@
+
+  <div class="container-fluid h-100">
+    <div class="row h-100 bg-main">
+      <div class="col-sm-12 col-md-8 h-100">
+        <div class="row h-10">
+
+        </div>
+        <div class="row h-70">
+          <table class="table table-responsive-xs text-center">
+            <thead>
+            <tr>
+              <th scope="col">Product</th>
+              <th scope="col">Price</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Total</th>
+              <th scope="col">Delete</th>
+            </tr>
+          </thead>
+            <tbody>
+              <tr *ngFor="let product of products; let i = index">
+                <td>
+                  <img [src]="product.mainImage" style="width: 5rem; height: 5rem">
+                  <h5>{{ product.title }}</h5>
+                  <a class="text-secondary">details</a>
+                </td>
+                <td><p>{{ product.price }}</p></td>
+                <td><button (click)="removeProduct(i)" class="btn text-white">X</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="row h-20 m-1 d-flex justify-content-between">
+            <a routerLink="/" class="my-auto">Continue Shopping</a>
+            <p class="my-auto text-secondary">subTotal:<span style="font-size: 1.5em">{{ getTotalPrice() }}</span></p>
+        </div>
+      </div>
+      <div class="col h-100 bg-main">
+        <div class="row h-10"></div>
+        <div class="row h-70 justify-content-center">
+          <form (ngSubmit)="onOrderSubmit(frm)" #frm="ngForm">
+                <div class="form-group">
+                  <label for="name">Full Name</label>
+                  <input class="form-control" id="name" name="name" type="text" ngModel>
+                </div>
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input class="form-control" id="email" name="email" type="email" ngModel>
+                </div>
+                <div class="form-group">
+                  <label for="phone">Phone Number</label>
+                  <input class="form-control" id="phone" name="phone" type="number" ngModel>
+                </div>
+                <div class="form-group">
+                  <label for="city">Address(City/Region/Postal)</label>
+                  <input class="form-control" id="city" name="address" type="text" ngModel>
+                </div>
+                <div class="form-group">
+                  <label for="date_required">Date Required</label>
+                  <input class="form-control" id="date_required" name="date_required" type="date" ngModel>
+                </div>            
+                <input value="Complete Order" type="submit" class="form-control btn btn-primary">
+            </form>
+        </div>
+        <div class="row h-20">
+        </div>
+      </div>
+    </div>
+  </div>
+  

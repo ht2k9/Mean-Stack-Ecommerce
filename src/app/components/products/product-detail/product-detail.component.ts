@@ -1,28 +1,33 @@
-import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../product.service';
-import { SharedService } from '../../shared/shared.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+
+import { Subscription } from 'rxjs/internal/Subscription';
+
 import { Product } from '../product.modal';
+import { SharedService } from '../../shared/shared.service';
+import { ProductService } from '../product.service';
 
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
   styleUrls: ['./product-detail.component.css']
 })
-export class ProductDetailComponent implements OnInit {
+export class ProductDetailComponent implements OnInit, OnDestroy {
+  private subscription = new Subscription();
   product: Product;
   searchOpen = false;
+
   constructor(private router: Router,
     private route: ActivatedRoute,
-    private dataSrv: ProductService,
+    private productService: ProductService,
     public sharedSrv: SharedService) {}
 
   ngOnInit() {
     this.route.params.subscribe(
     (params: Params) => {
-      this.dataSrv.getProductById(params.id).subscribe((data: Product) => {
+      this.subscription.add(this.productService.getProductById(params.id).subscribe((data: Product) => {
         this.product = data;
-      });
+      }));
     });
   }
 
@@ -33,12 +38,16 @@ export class ProductDetailComponent implements OnInit {
   }
 
   onDeleteProduct(product_id: string){
-    this.dataSrv.deleteProduct(product_id).subscribe(
+    this.productService.deleteProduct(product_id).subscribe(
       (data) => {
         if(data['n'] == 1){
           this.router.navigate(['/']);
         }
     });
+  }
+
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
   }
 
 }

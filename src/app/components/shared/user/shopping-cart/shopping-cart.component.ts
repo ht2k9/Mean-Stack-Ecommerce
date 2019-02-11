@@ -1,16 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { SharedService } from '../../shared/shared.service';
-import { Product } from '../../products/product.modal';
-import { OrderService } from '../../orders/order.service';
-import { Order } from '../../orders/order.modal';
+
+import { Subscription } from 'rxjs/internal/Subscription';
+
+import { Order } from 'src/app/components/orders/order.modal';
+import { Product } from 'src/app/components/products/product.modal';
+import { SharedService } from '../../shared.service';
+import { OrderService } from 'src/app/components/orders/order.service';
 
 @Component({
   selector: 'app-shopping-cart',
   templateUrl: './shopping-cart.component.html',
   styleUrls: ['./shopping-cart.component.css']
 })
-export class ShoppingCartComponent implements OnInit {
+export class ShoppingCartComponent implements OnInit, OnDestroy {
+  private subscription = new Subscription();
   products: Product[];
 
   constructor(private sharedSrv: SharedService,
@@ -29,11 +33,11 @@ export class ShoppingCartComponent implements OnInit {
       this.products
     );
 
-    this.orderService.addOrder(values).subscribe(
+    this.subscription.add(this.orderService.addOrder(values).subscribe(
       (data: Order) => {
         console.log(data);
       }
-    );
+    ));
   }
 
   removeProduct(index: number){
@@ -48,5 +52,9 @@ export class ShoppingCartComponent implements OnInit {
       sum += product.price;
     });
     return sum;
+  }
+
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
   }
 }

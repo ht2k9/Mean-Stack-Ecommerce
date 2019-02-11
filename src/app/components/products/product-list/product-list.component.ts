@@ -12,7 +12,7 @@ import { Product } from '../product.modal';
 })
 export class ProductListComponent implements OnInit, OnDestroy {
   @Input() showSearch = true;
-  
+
   products: Product[];
   shownProducts: Product[];
   filteredProducts: Product[];
@@ -63,6 +63,4 @@ export class ProductListComponent implements OnInit, OnDestroy {
   ngOnDestroy(){
     this.subscription.unsubscribe();
   }
-
-
 }

@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ProductService } from '../../products/product.service';
-import { SharedService } from '../../shared/shared.service';
 import { Router } from '@angular/router';
+import { SharedService } from '../../shared.service';
 
 @Component({
   selector: 'app-signin',
@@ -23,9 +22,8 @@ export class SigninComponent implements OnInit {
     
     this.sharedService.loginAdmin(credentials).subscribe(
       (data: boolean) => {
-        console.log(data)
         if(data)
-          this.sharedService.adminLogged = true;
+          this.sharedService.adminState(true);
           this.router.navigate(['/']);
         },
       (error) => {

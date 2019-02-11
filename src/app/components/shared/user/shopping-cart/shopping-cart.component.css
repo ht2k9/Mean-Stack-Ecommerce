@@ -1,0 +1,37 @@
+.container{
+    font-family: sans-serif;
+}
+.bg-main{
+    background: #ecc2c2;
+}
+.col-md-8{
+    background: #ffe6e8;
+}
+.h-10{
+    height: 10%!important;
+}
+.h-20{
+    height: 20%!important;
+}
+.h-70{
+    height: 70%!important;
+}
+hr {
+    border: 5px solid #1d0507;
+    border-radius: 5px;
+}
+
+table{
+    font-size: 3vw;
+}
+
+@media screen and (min-width: 500px) {
+    table {
+       font-size: 15px;
+    }
+}
+@media screen and (max-width: 450px) {
+    table {
+       font-size: xx-small;
+    }
+}
