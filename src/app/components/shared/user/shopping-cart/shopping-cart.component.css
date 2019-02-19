@@ -1,9 +1,7 @@
 .container{
     font-family: sans-serif;
 }
-.bg-main{
-    background: #ecc2c2;
-}
+
 .col-md-8{
     background: #ffe6e8;
 }
@@ -22,7 +20,7 @@ hr {
 }
 
 table{
-    font-size: 3vw;
+    font-size: 3vh;
 }
 
 @media screen and (min-width: 500px) {

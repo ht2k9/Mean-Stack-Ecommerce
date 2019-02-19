@@ -29,18 +29,20 @@
             </tbody>
           </table>
         </div>
-        <div class="row h-20 m-1 d-flex justify-content-between">
+        <div class="row h-20">
+          <div class="col mx-1  d-flex justify-content-between">
             <a routerLink="/" class="my-auto">Continue Shopping</a>
             <p class="my-auto text-secondary">subTotal:<span style="font-size: 1.5em">{{ getTotalPrice() }}</span></p>
+          </div>
         </div>
       </div>
-      <div class="col h-100 bg-main">
+      <div class="col h-100 bg-warmpink">
         <div class="row h-10"></div>
         <div class="row h-70 justify-content-center">
           <form (ngSubmit)="onOrderSubmit(frm)" #frm="ngForm">
                 <div class="form-group">
                   <label for="name">Full Name</label>
-                  <input class="form-control" id="name" name="name" type="text" ngModel>
+                  <input class="form-control" id="name" name="name" type="text" ngModel required>
                 </div>
                 <div class="form-group">
                   <label for="email">Email</label>
@@ -48,7 +50,7 @@
                 </div>
                 <div class="form-group">
                   <label for="phone">Phone Number</label>
-                  <input class="form-control" id="phone" name="phone" type="number" ngModel>
+                  <input class="form-control" id="phone" name="phone" type="number" ngModel required>
                 </div>
                 <div class="form-group">
                   <label for="city">Address(City/Region/Postal)</label>
@@ -57,11 +59,11 @@
                 <div class="form-group">
                   <label for="date_required">Date Required</label>
                   <input class="form-control" id="date_required" name="date_required" type="date" ngModel>
-                </div>            
-                <input value="Complete Order" type="submit" class="form-control btn btn-primary">
+                </div>
+                <div class="form-group">
+                  <button [disabled]="frm.invalid" type="submit" class="btn btn-primary form-control"> Complete Order</button>
+                </div>        
             </form>
-        </div>
-        <div class="row h-20">
         </div>
       </div>
     </div>

@@ -13,6 +13,15 @@ import { SharedService } from './components/shared/shared.service';
       })),
       state('onadd', style({})),
       transition('default <=> onadd', animate('1s'))
+    ]),
+    trigger('navbar', [
+      state('close', style({
+        transform: 'translateY(-65px)'
+      })),
+      state('open', style({
+        transform: 'translateY(0px)'
+      })),
+      transition('open <=> close', animate('0.5s'))  
     ])
   ]
 })
@@ -20,7 +29,7 @@ export class AppComponent {
   categories = ['Home', 'Products', 'Orders', 'Shopping Cart', 'Signin'];
   links = ['/', '/products', '/orders/search', '/cart', '/login'];
 
-  navbarClosed = true;
+  navbarShow = false;
 
   currentState = 'close';
 

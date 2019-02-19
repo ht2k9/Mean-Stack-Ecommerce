@@ -3,3 +3,9 @@
 html, body {
     height: 100%;
 }
+.bg-warmpink{
+    background: #ecc2c2;
+}
+.clickable{
+    cursor: pointer;
+}

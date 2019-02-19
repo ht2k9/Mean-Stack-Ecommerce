@@ -1,4 +1,5 @@
-<div>
+
+<div [@navbar]="navbarShow? 'open' : 'close'" class="fixed-top">
     <app-navbar></app-navbar>
 </div>
 <div class="container-fluid h-100">
@@ -6,15 +7,15 @@
         <div class="col-sm-2 col-1 bg-light" style="max-width:50px">
             <div class="row align-items-center h-100">
                 <div class="col">
-                   <mat-icon svgIcon="menu-open" (click)="navbarClosed = !navbarClosed"></mat-icon>
+                   <mat-icon class="clickable" style="color: red" svgIcon="menu-open" (click)="navbarShow = !navbarShow"></mat-icon>
                 </div>
                 <div class="col align-self-start">
                     <a routerLink="/orders/track" routerLinkActive><mat-icon svgIcon="magnify"></mat-icon></a>
                 </div>
                 <div class="col align-self-buttom">
                     <a href="https://www.facebook.com/photofactorynahef/"><mat-icon svgIcon="facebook" class="my-1"></mat-icon></a>     
-                    <mat-icon style="color: green" svgIcon="whatsapp" class="my-1" data-toggle="tooltip" data-placement="right" title="050-648-8757"></mat-icon>
-                    <mat-icon style="color: purple" svgIcon="phone" class="my-1" data-toggle="tooltip" data-placement="right" title="050-648-8757"></mat-icon>
+                    <mat-icon class="clickable" style="color: green" svgIcon="whatsapp" class="my-1" data-toggle="tooltip" data-placement="right" title="050-648-8757"></mat-icon>
+                    <mat-icon class="clickable" style="color: purple" svgIcon="phone" class="my-1" data-toggle="tooltip" data-placement="right" title="050-648-8757"></mat-icon>
                 </div>
             </div>
         </div>

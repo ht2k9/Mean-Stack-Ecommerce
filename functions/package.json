@@ -20,6 +20,7 @@
     "firebase-functions": "^2.1.0",
     "mongoose": "^5.4.6",
     "mysql": "^2.16.0",
+    "nodemailer": "^5.1.1",
     "passport": "^0.4.0",
     "passport-local-mongoose": "^5.0.1"
   },

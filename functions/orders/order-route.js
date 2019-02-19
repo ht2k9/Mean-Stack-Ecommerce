@@ -1,5 +1,14 @@
 const router = require('express').Router();
 const Order = require('./order-model');
+const nodemailer = require('nodemailer');
+
+var transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: 'photofactory96@gmail.com',
+      pass: 'kashkoosh'
+    }
+  });
 
 router.get('/', (req, res, next) => {
     Order.find((err, result) => {
@@ -9,11 +18,28 @@ router.get('/', (req, res, next) => {
     })
 });
 
-router.post('/', (req, res, next) => {
+router.post('/', (req, res, next) => { 
     let order = new Order(req.body);
-    order.save((err) => {
+    order.save((err, resultedOrder) => {
         if(err) throw err;
-        res.send(order);
+        if(resultedOrder.costumer.email){           
+            const mailOptions = {
+                from: 'photofactory96@gmail.com',
+                to: resultedOrder.costumer.email,
+                subject: 'Your Order From PhotoFactory',
+                text: `Hello ${resultedOrder.costumer.name}, Your order from PhotoFactory is now bending,
+                for more information please enter the order ${resultedOrder._id} in our website`
+            };
+            transporter.sendMail(mailOptions, function(error, info){
+                if (error) {
+                  console.log(error);
+                } else {
+                    console.log('Email sent:' + info.response)
+                }
+              });
+        }
+
+        res.send(resultedOrder);
         next();
     })
 });

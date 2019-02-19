@@ -7,6 +7,7 @@ import { Order } from 'src/app/components/orders/order.modal';
 import { Product } from 'src/app/components/products/product.modal';
 import { SharedService } from '../../shared.service';
 import { OrderService } from 'src/app/components/orders/order.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -18,7 +19,8 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   products: Product[];
 
   constructor(private sharedSrv: SharedService,
-      private orderService: OrderService) { }
+      private orderService: OrderService,
+      private router: Router) { }
 
   ngOnInit() {
     this.products = this.sharedSrv.getCartItems();
@@ -34,8 +36,11 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
     );
 
     this.subscription.add(this.orderService.addOrder(values).subscribe(
-      (data: Order) => {
+      (data) => {
         console.log(data);
+        alert('order sent');
+        this.sharedSrv.cartItems = [];
+        this.router.navigate(['/']);
       }
     ));
   }
