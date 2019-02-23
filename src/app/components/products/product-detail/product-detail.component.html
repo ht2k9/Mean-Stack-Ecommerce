@@ -10,10 +10,10 @@
         <div class="card h-100">
           <div class="card-body mx-5 h-100">
             <div class="row align-items-center" style="height: 15%">
-              <a class="btn text-capitialize" routerLink="/products" style="font-size: 1.5em">Back</a>
+              <a class="btn text-capitialize border" routerLink="/products" style="font-size: 1.5em">Back</a>
             </div>
-            <div class="row align-items-center" style="height: 5%">
-              <h4 *ngFor="let size of product.sizes" class="card-title text-secondary" style="font-size: 1.5em">{{ size }}</h4>
+            <div class="row align-items-center" style="height: 15%;">
+              <span class="product-tag product-detail" *ngFor="let tag of product.tags">{{ tag }}</span>
             </div>
             <div class="row align-items-end" style="height: 10%">
                 <h3 class="card-title">{{ product.title }}</h3>
@@ -27,14 +27,11 @@
             <div class="row align-items-start" style="height: 12.5%">
                 <h3 class="card-title" style="font-size: 2em">${{ product.price }}</h3>
             </div>
-            <div class="row align-items-center" style="height: 20%">
-              <div class="col-4">
-                <p>Color</p>
-                <span class="rounded-circle bg-danger h-25 w-25">x</span>
-                <span class="rounded-circle bg-primary h-25 w-25">x</span>
-                <span class="rounded-circle bg-success h-25 w-25">x</span>
-              </div>
-              <div class="col-8"></div>
+            <div class="row align-items-end" style="height: 10%">
+                <p>Sizes: <span class="product-detail" *ngFor="let size of product.sizes">{{ size }}</span></p>
+            </div>
+            <div class="row align-items-center" style="height: 10%">
+              <p>Colors: <span class="product-color product-detail" *ngFor="let color of product.colors" [ngStyle]="{'background': color}"></span></p>
             </div>
             <div class="row h-25 align-items-start">
               <div class="col">

@@ -1,0 +1,15 @@
+.product-color{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-flex;
+}
+.product-tag{
+    border: 1px solid;
+    color: rgb(44, 212, 44);
+    font-size: 0.8em;
+}
+.product-detail{
+    margin-left: 5px;
+    padding: 5px;
+}

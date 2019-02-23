@@ -17,6 +17,7 @@ export class ProductService {
       };
 
     products: Product[];
+    selectedProduct: Product;
 
     constructor(private http: HttpClient){}
 
@@ -45,7 +46,7 @@ export class ProductService {
             );
     }
 
-    editProduct(values: Product, id: number){
+    editProduct(values: Product, id: string){
         return this.http.put<Product>(`${this.configUrl}/product/${id}`, JSON.stringify(values), this.httpOptions)
             .pipe(
                 catchError(this.handleError)

@@ -27,6 +27,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
     (params: Params) => {
       this.subscription.add(this.productService.getProductById(params.id).subscribe((data: Product) => {
         this.product = data;
+        this.productService.selectedProduct = data;
       }));
     });
   }

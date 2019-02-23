@@ -19,7 +19,7 @@ export class ProductAddComponent implements OnInit, OnDestroy {
   tags: string[];
   productForm: FormGroup;
   selectedProduct: Product;
-  selectedProductID : number;
+  selectedProductID : string;
 
   constructor(private productService: ProductService,
     private sharedService: SharedService,
@@ -36,44 +36,62 @@ export class ProductAddComponent implements OnInit, OnDestroy {
       description: ['', Validators.required],
       mainImage: ['', Validators.required],
       colors: this.fb.array([]),
-      tags: this.fb.array(this.sharedService.tags),
+      tags: this.fb.array(this.tags),
       sizes: this.fb.array([]),
       images: this.fb.array([]),
     });
 
     this.route.params.subscribe((param: Params) => {
       if(param.id){
-        this.selectedProduct = param.id;
-        this.subscription.add(this.productService.getProductById(this.selectedProductID).subscribe((data: Product) => {
-          this.selectedProduct = data;
-          const { title, price, description, mainImage, colors, sizes, images} = data;
-          this.editMode = true;
-          this.productForm = this.fb.group({
-            title: title,
-            price: price,
-            description: description,
-            mainImage: mainImage,
-            colors: this.fb.array(colors),
-            tags: this.fb.array(this.tags),
-            sizes: this.fb.array(sizes),
-            images: this.fb.array(images),
-          })
-        }));
+        this.selectedProductID = param.id;
+        this.selectedProduct = this.productService.selectedProduct;
+        this.editMode = true;
+
+        const { title, price, description, mainImage, colors, sizes, images} = this.selectedProduct;
+        this.editMode = true;
+        this.productForm = this.fb.group({
+          title: title,
+          price: price,
+          description: description,
+          mainImage: mainImage,
+          colors: this.fb.array(colors),
+          tags: this.fb.array(this.tags),
+          sizes: this.fb.array(sizes),
+          images: this.fb.array(images),
+        })
+        
       }
     });
   }
 
   onComplete(){
+    const tempVals = [];
+
+    for (let i = 0; i < this.allTags.controls.length; i++) {
+      const element = this.allTags.controls[i];
+      
+      if(element.value == true){
+        tempVals.push(this.tags[i]);
+      }else {
+        
+      }
+    }
+
+    this.allTags.reset();
+    tempVals.forEach(tag => {
+      this.addTag(tag);
+    })
+
     if(this.editMode){
       this.subscription.add(this.productService.editProduct(this.productForm.value, this.selectedProductID).subscribe((productData:Product) => {
-        console.log(productData);
+        this.router.navigate(['/']);
       }));
     } else{
       this.subscription.add(this.productService.addProduct(this.productForm.value).subscribe((productData: Product) => {
-        console.log(productData);
+        this.router.navigate(['/']);
       }));
     }
-    this.router.navigate(['/']);
+    
   }
 
   shouldCheck(tag: string): boolean{
@@ -97,6 +115,9 @@ export class ProductAddComponent implements OnInit, OnDestroy {
   get allImages() {
     return this.productForm.get('images') as FormArray;
   }
+  get allTags() {
+    return this.productForm.get('tags') as FormArray;
+  }
 
   addSize(){
     this.allSizes.push(this.fb.control('', Validators.required));
@@ -106,6 +127,9 @@ export class ProductAddComponent implements OnInit, OnDestroy {
   }
   addImage(){
     this.allImages.push(this.fb.control('', Validators.required));
+  }
+  addTag(tagVal){
+    this.allTags.push(this.fb.control(tagVal));
   }
 
   ngOnDestroy(){

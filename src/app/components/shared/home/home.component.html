@@ -1,11 +1,9 @@
 <div class="container-fluid h-100">
     <div class="row h-100">
-        <div class="col-12">
-            <div class="row" style="background-color: rgb(168, 215, 233)">
-                <img [@Carousel]="imageState" class="mx-auto img-fluid" [src]="images[currentIndex]" alt="ad image">
-            </div>
+        <div class="col-12 px-0 text-center">
+            <img [@Carousel]="imageState" class="img-fluid" [src]="images[currentIndex]" alt="ad image">
         </div>
-        <div class="col">
+        <div class="col px-0">
             <app-product-list [showSearch]="showSearch"></app-product-list>
         </div>
     </div>

@@ -40,6 +40,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
         console.log(data);
         alert('order sent');
         this.sharedSrv.cartItems = [];
+        
         this.router.navigate(['/']);
       }
     ));

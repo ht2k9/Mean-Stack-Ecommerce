@@ -13,6 +13,7 @@ router.post("/", (req, res, next) => {
     const product = new Product(req.body);
     product.save((err)=>{
         if(err) throw err;
+        console.log(product);
         res.send(product);
         next();
     });   

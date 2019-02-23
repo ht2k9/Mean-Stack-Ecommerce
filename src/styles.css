@@ -3,6 +3,9 @@
 html, body {
     height: 100%;
 }
+body{
+    font-family: 'Courier New', Courier, monospace !important;
+}
 .bg-warmpink{
     background: #ecc2c2;
 }

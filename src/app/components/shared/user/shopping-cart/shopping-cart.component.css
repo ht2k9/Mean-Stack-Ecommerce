@@ -1,8 +1,8 @@
-.container{
-    font-family: sans-serif;
+.container-fluid{
+    font-family: 'Courier New', Courier, monospace;
 }
 
-.col-md-8{
+.col-md{
     background: #ffe6e8;
 }
 .h-10{
@@ -14,16 +14,19 @@
 .h-70{
     height: 70%!important;
 }
-hr {
-    border: 5px solid #1d0507;
+.form-title{
+    border: 1px solid;
     border-radius: 5px;
+    padding: 5px; 
 }
-
 table{
     font-size: 3vh;
 }
-
-@media screen and (min-width: 500px) {
+img{
+    height: 200px;
+    width: 200px;
+}
+@media screen and (min-width: 451px) {
     table {
        font-size: 15px;
     }

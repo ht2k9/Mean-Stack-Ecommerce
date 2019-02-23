@@ -9,17 +9,18 @@ import { interval } from 'rxjs';
   styleUrls: ['./home.component.css'],
   animations: [
     trigger('Carousel', [
-      transition('show <=> hide', animate(('3s'), keyframes([
-        style({ opacity: 0 }),
-        style({ opacity: 1 })
-      ])))
-    ])
+      transition('* => *', animate('0.5s', keyframes([
+        style({opacity: 0}),
+        style({opacity: 0.5}),
+        style({opacity: 1})
+      ]))
+    )])
   ]
 })
 export class HomeComponent implements OnInit {
   showSearch = false;
 
-  imageState = 'show';
+  imageState = false;
   currentIndex = 0;
   images = [   
     'https://cloudfront.joigifts.com/content/images/thumbs/0012662.jpeg',
@@ -29,14 +30,14 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    interval(5000).subscribe( val => {
-      console.log(val)
-        this.animateCarousel();
+    interval(5000).subscribe(() => {
+      this.animateCarousel();
     });
   }
 
   animateCarousel(){
-    this.imageState == 'hide' ? this.imageState = 'show': this.imageState = 'hide';
+    this.imageState = !this.imageState;
+
     this.currentIndex++;
     if(this.currentIndex == this.images.length){
       this.currentIndex = 0;
