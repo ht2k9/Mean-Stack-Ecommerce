@@ -18,6 +18,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   private subscription = new Subscription();
   products: Product[];
 
+   
   constructor(private sharedSrv: SharedService,
       private orderService: OrderService,
       private router: Router) { }
@@ -37,10 +38,8 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
 
     this.subscription.add(this.orderService.addOrder(values).subscribe(
       (data) => {
-        console.log(data);
         alert('order sent');
         this.sharedSrv.cartItems = [];
-        
         this.router.navigate(['/']);
       }
     ));

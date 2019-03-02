@@ -72,12 +72,12 @@ export class ProductAddComponent implements OnInit, OnDestroy {
       
       if(element.value == true){
         tempVals.push(this.tags[i]);
-      }else {
-        
       }
     }
 
-    this.allTags.reset();
+    while (this.allTags.length !== 0) {
+      this.allTags.removeAt(0)
+    }
     tempVals.forEach(tag => {
       this.addTag(tag);
     })

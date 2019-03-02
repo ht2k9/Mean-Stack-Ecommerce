@@ -9,8 +9,8 @@
             <tr>
               <th scope="col">Product</th>
               <th scope="col">Price</th>
-              <th scope="col">Amount</th>
-              <th scope="col">Total</th>
+              <th scope="col">Color</th>
+              <th scope="col">Size</th>
               <th scope="col">Delete</th>
             </tr>
           </thead>
@@ -19,10 +19,12 @@
                 <td>
                   <img [src]="product.mainImage" style="width: 5rem; height: 5rem">
                   <h5>{{ product.title }}</h5>
-                  <a class="text-secondary">details</a>
+                  <a class="text-secondary">{{ product.description }}</a>
                 </td>
                 <td><p>{{ product.price }}</p></td>
-                <td><button (click)="removeProduct(i)" class="btn text-white">X</button></td>
+                <td><span class="product-color" *ngFor="let color of product.colors" [ngStyle]="{'background': product.colors[0] }"></span></td>
+                <td><p>{{ product.sizes[0] }}</p></td>
+                <td><button (click)="removeProduct(i)" class="btn">X</button></td>
               </tr>
             </tbody>
           </table>

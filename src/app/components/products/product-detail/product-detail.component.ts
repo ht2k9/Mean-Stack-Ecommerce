@@ -41,7 +41,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   onDeleteProduct(product_id: string){
     this.productService.deleteProduct(product_id).subscribe(
       (data) => {
-        if(data['n'] == 1){
+        if(data){
           this.router.navigate(['/']);
         }
     });

@@ -13,7 +13,7 @@
               <a class="btn text-capitialize border" routerLink="/products" style="font-size: 1.5em">Back</a>
             </div>
             <div class="row align-items-center" style="height: 15%;">
-              <span class="product-tag product-detail" *ngFor="let tag of product.tags">{{ tag }}</span>
+              <span class="product-tag product-detail" *ngFor="let tag of product.tags"><ng-container>{{ tag }}</ng-container></span>
             </div>
             <div class="row align-items-end" style="height: 10%">
                 <h3 class="card-title">{{ product.title }}</h3>

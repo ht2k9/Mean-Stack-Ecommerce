@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+<nav class="navbar navbar-expand-md navbar-primary bg-light">
     <a class="navbar-brand" routerLink="/">PhotoFactory</a>
     <ng-container *ngIf="!isAdmin">
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed">
@@ -38,7 +38,7 @@
         </ul>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a (click)="onSignOut()" class="nav-link">Sign Out</a>
+            <a (click)="onSignOut()" class="nav-link" style="cursor: pointer;">Sign Out</a>
           </li>
         </ul>
       </div>

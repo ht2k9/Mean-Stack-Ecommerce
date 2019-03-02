@@ -7,7 +7,7 @@
         <div class="col-sm-2 col-1 bg-light" style="max-width:50px">
             <div class="row align-items-center h-100">
                 <div class="col">
-                   <mat-icon class="clickable" style="color: red" svgIcon="menu-open" (click)="navbarShow = !navbarShow"></mat-icon>
+                    <a routerLink="/" routerLinkActive><mat-icon svgIcon="home"></mat-icon></a>
                 </div>
                 <div class="col align-self-start">
                     <a routerLink="/orders/track" routerLinkActive><mat-icon svgIcon="magnify"></mat-icon></a>
@@ -31,6 +31,9 @@
                 </div>
                 <div class="col">
                    <a routerLink="/cart" routerLinkActive><mat-icon svgIcon="cart-outline"><span class="badge badge-primary badge-pill">{{ sharedService.cartItems.length }}</span></mat-icon></a>
+                </div>
+                <div class="col">
+                   <mat-icon class="clickable" style="color:#007bff" svgIcon="menu-open" (click)="navbarShow = !navbarShow"></mat-icon>
                 </div>
             </div>
         </div>
